@@ -1,0 +1,30 @@
+---
+import { indexPath } from '../content/projects';
+import { SITE_NAME } from '../i18n/identity';
+import { homePath, type Locale } from '../i18n/locales';
+import { UI } from '../i18n/ui';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+  /** Path of the current page in each locale, for the language switch. */
+  paths?: Readonly<Record<Locale, string>>;
+  /** True on the projects index itself. */
+  onIndex?: boolean;
+}
+
+const { locale, paths, onIndex = false } = Astro.props;
+---
+
+<!-- Banner of the inner pages: back to the homepage and to the projects index, language switch. -->
+<header class="sheet-banner">
+  <nav class="site-nav" aria-label={UI[locale].projects.navLabel}>
+    <a class="site-link" href={homePath(locale)}>
+      {SITE_NAME}
+    </a>
+    <a href={indexPath(locale)} aria-current={onIndex ? 'page' : undefined}>
+      {UI[locale].projects.link}
+    </a>
+  </nav>
+  <LanguageSwitcher locale={locale} paths={paths} />
+</header>

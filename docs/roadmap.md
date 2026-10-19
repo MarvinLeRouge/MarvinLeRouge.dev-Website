@@ -29,7 +29,7 @@
 
 - [x] FEAT-004 - Add the project sheet content collection
 - [x] FEAT-005 - Add the project sheet layout and recruiter / lead dev view switch
-- [ ] FEAT-006 - Add the projects index and homepage link
+- [x] FEAT-006 - Add the projects index and homepage link
 - [ ] FEAT-018 - Add architecture diagrams to project sheets
 
 ## Section 5 - Project sheet content

@@ -1,11 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import { render, type CollectionEntry } from 'astro:content';
-import { SITE_NAME } from '../i18n/identity';
-import { homePath, type Locale } from '../i18n/locales';
+import type { Locale } from '../i18n/locales';
 import { UI } from '../i18n/ui';
 import { PANEL_ATTRIBUTE, TAB_ATTRIBUTE, VIEWS } from '../scripts/sheet-view';
-import LanguageSwitcher from './LanguageSwitcher.astro';
+import SiteBanner from './SiteBanner.astro';
 
 interface Props {
   sheet: CollectionEntry<'projects'>;
@@ -21,12 +20,7 @@ const { Content } = await render(sheet);
 const viewTitles = { recruiter: t.recruiterView, 'lead-dev': t.leadDevView };
 ---
 
-<header class="sheet-banner">
-  <a class="site-link" href={homePath(locale)}>
-    {SITE_NAME}
-  </a>
-  <LanguageSwitcher locale={locale} paths={translations} />
-</header>
+<SiteBanner locale={locale} paths={translations} />
 
 <main class="project-sheet">
   <header>

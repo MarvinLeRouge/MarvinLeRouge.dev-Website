@@ -29,7 +29,7 @@
 
 - [x] FEAT-004 - Ajouter la collection de contenu des fiches projet
 - [x] FEAT-005 - Ajouter le gabarit de fiche et le sélecteur de vue recruteur / lead dev
-- [ ] FEAT-006 - Ajouter l'index des projets et le lien depuis l'accueil
+- [x] FEAT-006 - Ajouter l'index des projets et le lien depuis l'accueil
 - [ ] FEAT-018 - Ajouter les schémas d'architecture aux fiches projet
 
 ## Section 5 - Contenu des fiches projet

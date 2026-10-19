@@ -39,7 +39,7 @@ adrs: # optional
   - title: 'ADR-0002: JSON ledger keyed by Message-ID'
     url: https://github.com/MarvinLeRouge/JobFlow/blob/main/docs/adr/0002-....md
 demo: https://... # optional, https
-order: 1 # position in the projects index
+order: 1 # position in the projects index, unique per language
 draft: true # true by default
 ---
 
@@ -64,6 +64,8 @@ The last view picked is remembered across sheets: a sheet URL without parameter 
 The link preview image of a sheet is its screenshot, cropped to 1200 x 630: keep the important part of the screenshot near its center.
 
 ## Publication
+
+The projects index (`/projets/`, `/en/projects/`) lists the published sheets of a language in `order` order, and the homepage links to it. Both only appear once the language has a published sheet: publishing the first sheet adds them, with no other change.
 
 - A sheet is a **draft by default**. Drafts are visible with `npm run dev` for review, and never built in production.
 - Publishing a sheet takes an explicit `draft: false`, after review by the developer.
