@@ -152,3 +152,35 @@ test.describe('project sheet without JavaScript', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Vue lead dev' })).toBeVisible();
   });
 });
+
+test.describe('project sheet diagrams', () => {
+  test('shows the architecture diagram with its text alternative', async ({ page }) => {
+    // CSP violations of the page are reported as console errors.
+    const consoleErrors: string[] = [];
+    page.on('console', (message) => {
+      if (message.type() === 'error') consoleErrors.push(message.text());
+    });
+    await page.goto(`${FR_SHEET}?vue=tech`);
+
+    const diagram = page.getByRole('img', { name: /Chaîne de publication/ });
+    await diagram.scrollIntoViewIfNeeded();
+    await expect(diagram).toBeVisible();
+    expect(await diagram.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+    expect(consoleErrors).toEqual([]);
+  });
+
+  test('keeps the diagram readable on a narrow screen, scrolling instead of shrinking', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await page.goto(`${FR_SHEET}?vue=tech`);
+
+    const diagram = page.getByRole('img', { name: /Chaîne de publication/ });
+    const width = await diagram.evaluate((img) => img.getBoundingClientRect().width);
+    expect(width).toBeGreaterThan(375);
+    const pageOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    );
+    expect(pageOverflow).toBe(0);
+  });
+});

@@ -404,6 +404,18 @@ h1 .rouge {
   border: 2px solid #ffc800;
 }
 
+/* Diagrams keep a readable size on narrow screens: their paragraph scrolls horizontally. */
+.project-sheet p:has(> img[src$='.svg']) {
+  overflow-x: auto;
+}
+
+.project-sheet img[src$='.svg'] {
+  display: block;
+  width: max(100%, 36rem);
+  max-width: none;
+  border: none;
+}
+
 .project-sheet dt {
   margin-top: 0.75rem;
   color: #ffc800;

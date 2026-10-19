@@ -13,6 +13,7 @@ src/content/projects/
   fr/<slug>.md     French version, published at /projets/<slug>/
   en/<slug>.md     English version, published at /en/projects/<slug>/
   images/          screenshots
+  diagrams/        diagrams: Mermaid sources (.mmd) and generated SVG files
 ```
 
 The same file name in `fr/` and `en/` links the two versions of a sheet (language switch, `hreflang`). A sheet may exist in one language only.
@@ -52,6 +53,30 @@ Body headings start at level 3 (`###`): level 2 is the view title.
 
 See `src/content/projects/fr/example.md` for a complete example (a draft, never published). The `e2e-fixture.md` sheets are published but only built for the end-to-end tests (`npm run build:e2e`), never in production.
 
+## Diagrams
+
+The architecture diagram of the lead dev view is written in [Mermaid](https://mermaid.js.org/), one source per language since the labels are translated:
+
+1. Write `src/content/projects/diagrams/<slug>-<locale>.mmd`, for example:
+
+   ```
+   flowchart LR
+     gmail[Gmail] --> parser[Parser per provider]
+     parser --> ledger[(JSON ledger)]
+     ledger --> sheets[Google Sheets]
+   ```
+
+2. Run `npm run diagrams`: it writes the SVG next to the source, in the colors and font of the site. Commit both files. A unit test fails when an SVG is missing or no longer matches its source, the diagram settings, the font or the Mermaid version.
+3. Insert it in the body, with a short text alternative:
+
+   ```markdown
+   ![JobFlow flow: Gmail, parser per provider, JSON ledger, Google Sheets](../diagrams/jobflow-en.svg)
+   ```
+
+4. Describe the diagram in the text right after it: a diagram is a complex image, and its detailed description is required for accessibility (RGAA). The "Architecture" paragraph plays that role.
+
+Keep diagrams small (about ten boxes at most) and left to right (`flowchart LR`). On narrow screens, a diagram keeps a readable size and scrolls horizontally. Opened on its own in the browser, a diagram shows without its styles (blocked by the site's security policy): it is only meant to be shown inside a sheet. `classDef` and `class` can highlight a box, for instance in red (`fill:#e03030`).
+
 ## Views
 
 A published sheet shows one view at a time, selected with the "Recruiter view" / "Lead dev view" tabs (keyboard: arrow keys, Home, End). The recruiter view is shown first; the lead dev view has its own URL, to send it directly:
@@ -75,7 +100,8 @@ The projects index (`/projets/`, `/en/projects/`) lists the published sheets of 
 Checked by the unit tests:
 
 - no em dash, straight quotes and apostrophes only;
-- body headings start at level 3.
+- body headings start at level 3;
+- every image has a text alternative.
 
 Checked at review:
 

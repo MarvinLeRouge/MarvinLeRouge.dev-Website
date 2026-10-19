@@ -13,6 +13,7 @@ src/content/projects/
   fr/<slug>.md     version française, publiée sur /projets/<slug>/
   en/<slug>.md     version anglaise, publiée sur /en/projects/<slug>/
   images/          captures d'écran
+  diagrams/        schémas : sources Mermaid (.mmd) et fichiers SVG générés
 ```
 
 Le même nom de fichier dans `fr/` et `en/` relie les deux versions d'une fiche (changement de langue, `hreflang`). Une fiche peut n'exister que dans une langue.
@@ -52,6 +53,30 @@ Les titres du corps commencent au niveau 3 (`###`) : le niveau 2 est le titre de
 
 Un exemple complet se trouve dans `src/content/projects/fr/example.md` (un brouillon, jamais publié). Les fiches `e2e-fixture.md` sont publiées mais construites uniquement pour les tests de bout en bout (`npm run build:e2e`), jamais en production.
 
+## Schémas
+
+Le schéma d'architecture de la vue lead dev s'écrit en [Mermaid](https://mermaid.js.org/), une source par langue puisque les libellés sont traduits :
+
+1. Écrire `src/content/projects/diagrams/<slug>-<langue>.mmd`, par exemple :
+
+   ```
+   flowchart LR
+     gmail[Gmail] --> parser[Extraction par fournisseur]
+     parser --> ledger[(Registre JSON)]
+     ledger --> sheets[Google Sheets]
+   ```
+
+2. Lancer `npm run diagrams` : le SVG est écrit à côté de la source, aux couleurs et avec la police du site. Commiter les deux fichiers. Un test unitaire échoue si un SVG manque ou ne correspond plus à sa source, aux réglages des schémas, à la police ou à la version de Mermaid.
+3. L'insérer dans le corps, avec un texte alternatif court :
+
+   ```markdown
+   ![Flux de JobFlow : Gmail, extraction par fournisseur, registre JSON, Google Sheets](../diagrams/jobflow-fr.svg)
+   ```
+
+4. Décrire le schéma dans le texte qui le suit : un schéma est une image complexe, dont la description détaillée est exigée pour l'accessibilité (RGAA). Le paragraphe "Architecture" joue ce rôle.
+
+Garder les schémas petits (une dizaine de boîtes au plus) et de gauche à droite (`flowchart LR`). Sur un écran étroit, un schéma garde une taille lisible et défile horizontalement. Ouvert seul dans le navigateur, un schéma s'affiche sans ses styles (bloqués par la politique de sécurité du site) : il n'est fait que pour être affiché dans une fiche. `classDef` et `class` permettent de mettre une boîte en avant, par exemple en rouge (`fill:#e03030`).
+
 ## Vues
 
 Une fiche publiée affiche une vue à la fois, choisie avec les onglets "Vue recruteur" / "Vue lead dev" (clavier : flèches, Début, Fin). La vue recruteur s'affiche d'abord ; la vue lead dev a sa propre URL, pour l'envoyer directement :
@@ -75,7 +100,8 @@ L'index des projets (`/projets/`, `/en/projects/`) liste les fiches publiées d'
 Vérifiées par les tests unitaires :
 
 - pas de tiret cadratin, guillemets et apostrophes droits uniquement ;
-- les titres du corps commencent au niveau 3.
+- les titres du corps commencent au niveau 3 ;
+- chaque image a un texte alternatif.
 
 Vérifiées à la relecture :
 

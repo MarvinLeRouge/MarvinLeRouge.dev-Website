@@ -58,6 +58,7 @@ npm test             # unit tests (Vitest)
 npm run test:cov     # unit tests with the coverage gate
 npm run test:e2e     # end-to-end and accessibility tests on the site built by build:e2e
 npm run social-images # regenerate the link preview images, favicon.ico and the avatar icons
+npm run diagrams     # regenerate the project sheet diagrams (SVG) from their Mermaid sources
 ```
 
 ### Docker
@@ -93,7 +94,7 @@ tests/
 public/        files served as is (favicons, home screen icons, link preview images)
 docker/        Nginx configuration of the production image
 docs/          roadmap, operations runbook, project sheet guide and translated community files
-scripts/       git hook helpers, Docker smoke test and social image generator
+scripts/       git hook helpers, Docker smoke test, social image and diagram generators
 ```
 
 ---

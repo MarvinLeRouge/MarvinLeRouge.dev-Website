@@ -18,6 +18,12 @@ draft: false
 
 Lead dev view of the test sheet.
 
+### Architecture
+
+![Publishing chain: Markdown sheet, Astro build, then static site and end-to-end tests](../diagrams/e2e-fixture-en.svg)
+
+The Markdown sheet goes through the Astro build, which produces the static site and feeds the end-to-end tests.
+
 ### Details
 
 Lead dev view text.

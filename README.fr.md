@@ -58,6 +58,7 @@ npm test             # tests unitaires (Vitest)
 npm run test:cov     # tests unitaires avec la barrière de couverture
 npm run test:e2e     # tests de bout en bout et d'accessibilité sur le site construit par build:e2e
 npm run social-images # régénère les images d'aperçu des liens, favicon.ico et les icônes de l'avatar
+npm run diagrams     # régénère les schémas des fiches projet (SVG) à partir de leurs sources Mermaid
 ```
 
 ### Docker
@@ -93,7 +94,7 @@ tests/
 public/        fichiers servis tels quels (favicons, icônes d'écran d'accueil, images d'aperçu des liens)
 docker/        configuration Nginx de l'image de production
 docs/          feuille de route, guide d'exploitation, guide des fiches projet et fichiers communautaires traduits
-scripts/       utilitaires des hooks git, test de fumée Docker et générateur d'images d'aperçu
+scripts/       utilitaires des hooks git, test de fumée Docker, générateurs d'images d'aperçu et de schémas
 ```
 
 ---
