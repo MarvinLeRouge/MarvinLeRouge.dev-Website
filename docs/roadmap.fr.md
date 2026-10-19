@@ -23,6 +23,7 @@
 - [x] FEAT-003 - Ajouter les balises meta, Open Graph, le sitemap et robots
 - [x] TEST-001 - Vérifier les règles d'écriture et les données d'identité par des tests unitaires
 - [x] FEAT-016 - Ajouter les favicons de repli, la couleur de thème et le manifeste web
+- [x] FEAT-017 - Remplacer le favicon par un motif plus lisible
 
 ## Section 4 - Fiches projet
 

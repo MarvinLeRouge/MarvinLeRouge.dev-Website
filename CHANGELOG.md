@@ -21,6 +21,7 @@ automatically from Conventional Commits history.
 - Add page metadata, link previews, favicon, sitemap and robots
 - Add favicon.ico fallback, theme color and web app manifest
 - Add the project sheet content collection
+- Replace the favicon with a more legible design
 
 ### Miscellaneous
 

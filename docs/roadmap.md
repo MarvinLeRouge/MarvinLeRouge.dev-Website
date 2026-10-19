@@ -23,6 +23,7 @@
 - [x] FEAT-003 - Add meta tags, Open Graph, sitemap and robots
 - [x] TEST-001 - Enforce writing rules and identity data with unit tests
 - [x] FEAT-016 - Add favicon fallbacks, theme color and web app manifest
+- [x] FEAT-017 - Replace the favicon with a more legible design
 
 ## Section 4 - Project sheets
 
