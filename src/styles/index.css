@@ -359,3 +359,79 @@ h1 .rouge {
   color: #666;
   letter-spacing: 0.1em;
 }
+
+/* Project sheets: readable baseline, the full layout comes with the view switch (FEAT-005). */
+.project-sheet {
+  width: min(100% - 2rem, 48rem);
+  margin: 3rem auto;
+  line-height: 1.7;
+}
+
+.project-sheet h1 {
+  font-size: 3rem;
+  color: #ffc800;
+}
+
+.project-sheet h2 {
+  margin: 2.5rem 0 1rem;
+  font-family: 'Bebas Neue', monospace;
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+  color: #ffc800;
+}
+
+.project-sheet h3 {
+  margin: 1.5rem 0 0.5rem;
+  color: #fff;
+}
+
+.project-sheet p,
+.project-sheet ul,
+.project-sheet dl {
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.project-sheet ul {
+  padding-left: 1.5rem;
+}
+
+.project-sheet img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+  border: 2px solid #ffc800;
+}
+
+.project-sheet dt {
+  margin-top: 0.75rem;
+  color: #ffc800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.project-sheet a {
+  color: #ffc800;
+}
+
+.project-sheet .tagline {
+  font-size: 1.1rem;
+  color: #999;
+}
+
+.project-sheet .sheet-links {
+  list-style: none;
+  padding-left: 0;
+}
+
+.draft-notice {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: #e03030;
+  color: #fff !important;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}

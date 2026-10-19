@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n/locales';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  sheet: CollectionEntry<'projects'>;
+  locale: Locale;
+}
+
+const { sheet, locale } = Astro.props;
+const { data } = sheet;
+const t = UI[locale].sheet;
+const { Content } = await render(sheet);
+---
+
+<!-- Both views stacked: the rendering without JavaScript. The view switch comes with FEAT-005. -->
+<article class="project-sheet">
+  <header>
+    {data.draft && <p class="draft-notice">{t.draftNotice}</p>}
+    <h1>{data.title}</h1>
+    <p class="tagline">{data.tagline}</p>
+  </header>
+
+  <section aria-labelledby="recruiter-view">
+    <h2 id="recruiter-view">{t.recruiterView}</h2>
+    <Image src={data.screenshot.src} alt={data.screenshot.alt} />
+    <dl>
+      <dt>{t.problem}</dt>
+      <dd>{data.recruiter.problem}</dd>
+      <dt>{t.built}</dt>
+      <dd>{data.recruiter.built}</dd>
+      <dt>{t.result}</dt>
+      <dd>{data.recruiter.result}</dd>
+      <dt>{t.keywords}</dt>
+      <dd>{data.keywords.join(', ')}</dd>
+      <dt>{t.stack}</dt>
+      <dd>{data.stack.join(', ')}</dd>
+    </dl>
+    <ul class="sheet-links">
+      <li>
+        <a href={data.repo}>
+          <span aria-hidden="true">→ </span>
+          {t.repo}
+        </a>
+      </li>
+      {data.demo && (
+        <li>
+          <a href={data.demo}>
+            <span aria-hidden="true">→ </span>
+            {t.demo}
+          </a>
+        </li>
+      )}
+    </ul>
+  </section>
+
+  <section aria-labelledby="lead-dev-view">
+    <h2 id="lead-dev-view">{t.leadDevView}</h2>
+    <Content />
+    {data.adrs && (
+      <>
+        <h3>{t.adrs}</h3>
+        <ul>
+          {data.adrs.map((adr) => (
+            <li>
+              <a href={adr.url}>{adr.title}</a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </section>
+</article>

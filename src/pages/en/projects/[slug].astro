@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectSheet from '../../../components/ProjectSheet.astro';
+import { sheetRoutes } from '../../../content/projects';
+import { SITE_NAME } from '../../../i18n/identity';
+import { UI } from '../../../i18n/ui';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  // Drafts are only built by the development server, for review.
+  return sheetRoutes(await getCollection('projects'), 'en', import.meta.env.DEV);
+}
+
+const { sheet, translations } = Astro.props;
+---
+
+<BaseLayout
+  title={`${sheet.data.title} | ${SITE_NAME}`}
+  locale="en"
+  translations={translations}
+  meta={{
+    description: sheet.data.tagline,
+    // Site-wide preview image until sheets get their own (FEAT-005).
+    image: '/og/home-en.png',
+    imageAlt: UI.en.homeMeta.imageAlt,
+  }}
+>
+  <ProjectSheet sheet={sheet} locale="en" />
+</BaseLayout>

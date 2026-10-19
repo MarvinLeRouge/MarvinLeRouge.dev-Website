@@ -26,6 +26,22 @@ interface HomeStrings {
   readonly footerDeadCodeAfter: string;
 }
 
+/** Labels of the project sheet pages. */
+interface SheetStrings {
+  readonly recruiterView: string;
+  readonly leadDevView: string;
+  readonly problem: string;
+  readonly built: string;
+  readonly result: string;
+  readonly stack: string;
+  readonly keywords: string;
+  readonly repo: string;
+  readonly adrs: string;
+  readonly demo: string;
+  /** Shown on draft sheets, which only exist in development. */
+  readonly draftNotice: string;
+}
+
 /** Document metadata, for search engines and link previews. */
 export interface PageMeta {
   readonly title: string;
@@ -41,6 +57,7 @@ interface UiStrings {
   readonly languageName: string;
   readonly homeMeta: PageMeta;
   readonly home: HomeStrings;
+  readonly sheet: SheetStrings;
 }
 
 /** Every user-facing string of the site, per locale. */
@@ -96,6 +113,19 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       footerDeadCodeStruck: 'corps',
       footerDeadCodeAfter: 'code mort trouvé.',
     },
+    sheet: {
+      recruiterView: 'Vue recruteur',
+      leadDevView: 'Vue lead dev',
+      problem: 'Problème',
+      built: 'Ce qui a été construit',
+      result: 'Résultat',
+      stack: 'Stack',
+      keywords: 'Compétences',
+      repo: 'Code source sur GitHub',
+      adrs: "Décisions d'architecture (ADR)",
+      demo: 'Démo',
+      draftNotice: 'Brouillon, non publié',
+    },
   },
   en: {
     languageSwitcherLabel: 'Language',
@@ -143,6 +173,19 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       footerDeadCodeBefore: 'no',
       footerDeadCodeStruck: 'remains',
       footerDeadCodeAfter: 'dead code found.',
+    },
+    sheet: {
+      recruiterView: 'Recruiter view',
+      leadDevView: 'Lead dev view',
+      problem: 'Problem',
+      built: 'What was built',
+      result: 'Result',
+      stack: 'Stack',
+      keywords: 'Skills',
+      repo: 'Source code on GitHub',
+      adrs: 'Architecture decisions (ADR)',
+      demo: 'Demo',
+      draftNotice: 'Draft, not published',
     },
   },
 };
