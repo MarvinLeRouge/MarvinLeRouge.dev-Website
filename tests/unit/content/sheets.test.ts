@@ -36,5 +36,10 @@ describe('project sheet files', () => {
     it('starts its body headings at level 3, under the lead dev view heading', () => {
       expect(body(text)).not.toMatch(/^#{1,2} /m);
     });
+
+    it('gives every image a text alternative', () => {
+      const alts = [...body(text).matchAll(/!\[([^\]]*)\]\(/g)].map(([, alt]) => alt.trim());
+      expect(alts.filter((alt) => alt === '')).toEqual([]);
+    });
   });
 });

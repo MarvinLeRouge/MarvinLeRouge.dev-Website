@@ -24,6 +24,7 @@ automatically from Conventional Commits history.
 - Add the project sheet content collection
 - Add the project sheet layout and recruiter / lead dev view switch
 - Add the projects index and homepage link
+- Add architecture diagrams to project sheets
 
 ### Miscellaneous
 

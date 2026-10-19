@@ -18,6 +18,12 @@ draft: false
 
 Vue lead dev de la fiche de test.
 
+### Architecture
+
+![Chaîne de publication : fiche Markdown, build Astro, puis site statique et tests de bout en bout](../diagrams/e2e-fixture-fr.svg)
+
+La fiche Markdown passe par le build Astro, qui produit le site statique et sert aux tests de bout en bout.
+
 ### Détails
 
 Texte de la vue lead dev.
