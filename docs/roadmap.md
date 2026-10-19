@@ -27,7 +27,7 @@
 
 ## Section 4 - Project sheets
 
-- [ ] FEAT-004 - Add the project sheet content collection
+- [x] FEAT-004 - Add the project sheet content collection
 - [ ] FEAT-005 - Add the project sheet layout and recruiter / lead dev view switch
 - [ ] FEAT-006 - Add the projects index and homepage link
 

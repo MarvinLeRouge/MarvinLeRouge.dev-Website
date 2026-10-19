@@ -17,6 +17,8 @@ export default defineConfig({
       filter: (page) => !page.endsWith('/404/'),
     }),
   ],
+  // Keep straight quotes and apostrophes as written (writing rule): no typographic substitution.
+  markdown: { smartypants: false },
   // Whitespace compression collapses meaningful spaces between inline elements.
   compressHTML: false,
   vite: {
