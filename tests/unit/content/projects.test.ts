@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  assertTranslated,
   assertUniqueOrder,
   indexPath,
   indexRoutes,
@@ -79,16 +80,19 @@ describe('sheetRoutes', () => {
     });
   });
 
-  it('omits the translations of a sheet missing in a locale', () => {
+  it('omits the translations of a draft missing in a locale', () => {
     const routes = sheetRoutes(entries, 'fr', true);
 
     expect(routes.at(-1)?.props).toEqual({ sheet: entries[3], translations: undefined });
   });
 
-  it('ignores a translation that is still a draft', () => {
-    const withDraftTranslation = [entry('fr/gamma', 4), entry('en/gamma', 4, true)];
+  it('links translations only between visible sheets, in development too', () => {
+    const draftPair = [entry('fr/gamma', 4, true), entry('en/gamma', 4, true)];
 
-    expect(sheetRoutes(withDraftTranslation, 'fr', false)[0].props.translations).toBeUndefined();
+    expect(sheetRoutes(draftPair, 'fr', true)[0].props.translations).toEqual({
+      fr: '/projets/gamma/',
+      en: '/en/projects/gamma/',
+    });
   });
 });
 
@@ -133,5 +137,22 @@ describe('assertUniqueOrder', () => {
 
   it('is checked when building the sheet routes', () => {
     expect(() => sheetRoutes([entry('fr/a', 1), entry('fr/b', 1)], 'fr', false)).toThrow(/order 1/);
+  });
+});
+
+describe('assertTranslated', () => {
+  it('accepts published sheets published in every locale, and untranslated drafts', () => {
+    expect(() => assertTranslated(entries)).not.toThrow();
+  });
+
+  it('rejects a published sheet whose translation is missing or still a draft', () => {
+    expect(() => assertTranslated([entry('fr/solo', 1)])).toThrow(/fr\/solo.*en\/solo/);
+    expect(() => assertTranslated([entry('fr/solo', 1), entry('en/solo', 1, true)])).toThrow(
+      /en\/solo/,
+    );
+  });
+
+  it('is checked when building the sheet routes', () => {
+    expect(() => sheetRoutes([entry('fr/solo', 1)], 'fr', false)).toThrow(/en\/solo/);
   });
 });

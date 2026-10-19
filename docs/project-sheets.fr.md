@@ -30,12 +30,14 @@ stack: [Python, SQL] # au moins un élément
 repo: https://github.com/MarvinLeRouge/JobFlow # https, GitHub uniquement
 screenshot:
   src: ../images/jobflow.png # chemin relatif à la fiche
+  full: ../images/jobflow-full.avif # facultatif : image en taille réelle, ouverte depuis la capture
   alt: Ce que montre la capture # obligatoire, non vide
 keywords: [Pipelines de données, Tests, CI] # 3 ou 4 mots-clés recruteur
 recruiter:
   problem: Le problème de départ, en une ou deux phrases.
   built: Ce qui a été construit, en une ou deux phrases.
   result: Le résultat, en ordre de grandeur.
+lastAction: Ajout d'un nouveau fournisseur # obligatoire pour publier : dernière évolution, sans date
 adrs: # facultatif
   - title: 'ADR-0002 : registre JSON indexé par Message-ID'
     url: https://github.com/MarvinLeRouge/JobFlow/blob/main/docs/adr/0002-....md
@@ -49,9 +51,35 @@ Vue lead dev, à la première personne.
 ### Architecture
 
 Les titres du corps commencent au niveau 3 (`###`) : le niveau 2 est le titre de la vue.
+
+### Décisions clés
+
+...
 ```
 
 Un exemple complet se trouve dans `src/content/projects/fr/example.md` (un brouillon, jamais publié). Les fiches `e2e-fixture.md` sont publiées mais construites uniquement pour les tests de bout en bout (`npm run build:e2e`), jamais en production.
+
+## Captures
+
+Chaque fiche a une capture, nommée d'après la fiche dans `src/content/projects/images/` :
+
+- `<slug>.png` : la capture affichée dans la fiche, la carte de l'index et l'aperçu des liens. **768 x 480**, recadrée à 100 % de zoom plutôt que réduite, pour que le texte reste lisible. Un PNG en palette (256 couleurs) est une bonne source.
+- `<slug>-full.avif` (facultatif) : l'image en taille réelle. La capture devient alors un lien vers elle ; avec JavaScript, elle s'ouvre dans une fenêtre modale (Échap ou le bouton "Fermer" la referment), qui défile quand l'image dépasse l'écran. Quand elle existe, l'aperçu des liens est recadré dans son coin supérieur gauche.
+
+Les captures sont servies en AVIF, avec le format source en repli. Masquer tout élément personnel avant la capture : liens de suivi, identifiants d'emails, avatars de compte.
+
+## Structure de la vue lead dev
+
+Chaque fiche publiée contient les six mêmes sections, dans cet ordre, en titres `###` (vérifié par un test unitaire). Une introduction peut précéder la première.
+
+| Français                     | Anglais                     |
+| ---------------------------- | --------------------------- |
+| Architecture                 | Architecture                |
+| Décisions clés               | Key decisions               |
+| Une difficulté               | A difficulty                |
+| Qualité                      | Quality                     |
+| Chronologie                  | Timeline                    |
+| Ce que je referais autrement | What I would do differently |
 
 ## Schémas
 
@@ -75,7 +103,7 @@ Le schéma d'architecture de la vue lead dev s'écrit en [Mermaid](https://merma
 
 4. Décrire le schéma dans le texte qui le suit : un schéma est une image complexe, dont la description détaillée est exigée pour l'accessibilité (RGAA). Le paragraphe "Architecture" joue ce rôle.
 
-Garder les schémas petits (une dizaine de boîtes au plus) et de gauche à droite (`flowchart LR`). Sur un écran étroit, un schéma garde une taille lisible et défile horizontalement. Ouvert seul dans le navigateur, un schéma s'affiche sans ses styles (bloqués par la politique de sécurité du site) : il n'est fait que pour être affiché dans une fiche. `classDef` et `class` permettent de mettre une boîte en avant, par exemple en rouge (`fill:#e03030`).
+Garder les schémas petits (une dizaine de boîtes au plus) et pas plus larges que la colonne de lecture (800 px, vérifié par un test unitaire) : découper une longue chaîne en rangées, avec `flowchart TB` et des blocs `subgraph` en `direction LR`. Sur un écran étroit, un schéma garde une taille lisible et défile horizontalement. Ouvert seul dans le navigateur, un schéma s'affiche sans ses styles (bloqués par la politique de sécurité du site) : il n'est fait que pour être affiché dans une fiche. `classDef` et `class` permettent de mettre une boîte en avant, par exemple en rouge (`fill:#e03030`).
 
 ## Vues
 
@@ -93,7 +121,8 @@ L'image d'aperçu d'une fiche est sa capture, recadrée en 1200 x 630 : garder l
 L'index des projets (`/projets/`, `/en/projects/`) liste les fiches publiées d'une langue dans l'ordre `order`, et la page d'accueil y renvoie. Les deux n'apparaissent qu'une fois qu'une fiche est publiée dans la langue : publier la première fiche les ajoute, sans autre modification.
 
 - Une fiche est un **brouillon par défaut**. Les brouillons sont visibles avec `npm run dev` pour la relecture, et jamais construits en production.
-- Publier une fiche demande un `draft: false` explicite, après relecture par le développeur.
+- Publier une fiche demande un `draft: false` explicite, après relecture par le développeur, et une `lastAction`.
+- Les deux versions linguistiques d'une fiche sont publiées ensemble : le build échoue si une fiche publiée n'a pas sa traduction publiée.
 
 ## Règles d'écriture
 

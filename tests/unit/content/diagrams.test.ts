@@ -5,6 +5,9 @@ import { diagramHash, FONT_PATH, SOURCE_HASH_PATTERN } from '../../../scripts/di
 
 const DIAGRAMS_DIR = join(import.meta.dirname, '../../../src/content/projects/diagrams');
 
+/** Reading column of the sheets (48rem) plus a small margin: wider diagrams get scaled down. */
+const MAX_DIAGRAM_WIDTH = 800;
+
 const files = readdirSync(DIAGRAMS_DIR);
 const fontBytes = readFileSync(FONT_PATH);
 const mermaidVersion = JSON.parse(
@@ -29,6 +32,11 @@ describe('architecture diagrams', () => {
       const source = readFileSync(join(DIAGRAMS_DIR, `${name}.mmd`));
       const hash = diagramHash(source, fontBytes, mermaidVersion);
       expect(svg.match(SOURCE_HASH_PATTERN)?.[1]).toBe(hash);
+    });
+
+    it('fits the reading column without shrinking its text: split long chains in rows', () => {
+      const [, , width] = (svg.match(/viewBox="([^"]+)"/)?.[1] ?? '').split(' ').map(Number);
+      expect(width).toBeLessThanOrEqual(MAX_DIAGRAM_WIDTH);
     });
 
     it('embeds the site font, as an image cannot load external fonts', () => {

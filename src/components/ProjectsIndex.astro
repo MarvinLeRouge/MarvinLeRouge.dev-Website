@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import { indexPath, indexRoutes, sheetPath, sheetSlug, visibleSheets } from '../content/projects';
 import { SITE_NAME } from '../i18n/identity';
@@ -43,7 +43,13 @@ const t = UI[locale].projects;
     <ul class="project-list">
       {sheets.map((sheet) => (
         <li class="project-card">
-          <Image src={sheet.data.screenshot.src} alt="" width={640} />
+          <Picture
+            src={sheet.data.screenshot.src}
+            alt=""
+            width={640}
+            formats={['avif']}
+            fallbackFormat={sheet.data.screenshot.src.format}
+          />
           <h2>
             <a href={sheetPath(locale, sheetSlug(sheet.id))}>{sheet.data.title}</a>
           </h2>

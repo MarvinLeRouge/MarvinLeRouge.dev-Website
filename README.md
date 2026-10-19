@@ -86,7 +86,7 @@ src/
   i18n/        locales, identity links and every user-facing string (FR, EN)
   layouts/     page layouts (document head, shared structure)
   pages/       one file per route
-  scripts/     client scripts (language preference, email reveal)
+  scripts/     client scripts (language preference, email reveal, sheet view switch, screenshot dialog)
   styles/      global stylesheets
 tests/
   e2e/         Playwright and axe tests on the built site

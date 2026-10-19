@@ -1,9 +1,12 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { render, type CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n/locales';
 import { UI } from '../i18n/ui';
+import { LIGHTBOX_ATTRIBUTE } from '../scripts/lightbox';
 import { PANEL_ATTRIBUTE, TAB_ATTRIBUTE, VIEWS } from '../scripts/sheet-view';
+// Loaded on sheets with a full size screenshot only, see lightbox.ts.
+import lightboxScript from '../scripts/lightbox-entry.ts?worker&url';
 import SiteBanner from './SiteBanner.astro';
 
 interface Props {
@@ -17,6 +20,13 @@ const { sheet, locale, translations } = Astro.props;
 const { data } = sheet;
 const t = UI[locale].sheet;
 const { Content } = await render(sheet);
+// AVIF, with the source format as fallback: palette PNG screenshots get larger as WebP.
+const screenshotImage = {
+  src: data.screenshot.src,
+  alt: data.screenshot.alt,
+  formats: ['avif'],
+  fallbackFormat: data.screenshot.src.format,
+};
 const viewTitles = { recruiter: t.recruiterView, 'lead-dev': t.leadDevView };
 ---
 
@@ -27,6 +37,11 @@ const viewTitles = { recruiter: t.recruiterView, 'lead-dev': t.leadDevView };
     {data.draft && <p class="draft-notice">{t.draftNotice}</p>}
     <h1>{data.title}</h1>
     <p class="tagline">{data.tagline}</p>
+    {data.lastAction && (
+      <p class="last-action">
+        <span class="label">{t.lastAction}</span> {data.lastAction}
+      </p>
+    )}
     <!-- Hidden without JavaScript, where both views are shown one after the other. -->
     <div class="view-tabs" role="tablist" aria-label={t.viewSwitcherLabel}>
       {VIEWS.map((view, index) => (
@@ -52,7 +67,20 @@ const viewTitles = { recruiter: t.recruiterView, 'lead-dev': t.leadDevView };
     <h2 id="recruiter-title" class="view-title">
       {t.recruiterView}
     </h2>
-    <Image src={data.screenshot.src} alt={data.screenshot.alt} />
+    {data.screenshot.full ? (
+      <figure class="screenshot">
+        <a
+          href={data.screenshot.full.src}
+          aria-describedby="screenshot-hint"
+          {...{ [LIGHTBOX_ATTRIBUTE]: t.closeScreenshot }}
+        >
+          <Picture {...screenshotImage} />
+        </a>
+        <figcaption id="screenshot-hint">{t.fullScreenshot}</figcaption>
+      </figure>
+    ) : (
+      <Picture {...screenshotImage} />
+    )}
     <dl>
       <dt>{t.problem}</dt>
       <dd>{data.recruiter.problem}</dd>
@@ -106,3 +134,12 @@ const viewTitles = { recruiter: t.recruiterView, 'lead-dev': t.leadDevView };
     )}
   </section>
 </main>
+
+{data.screenshot.full && (
+  <script
+    is:inline
+    defer
+    src={lightboxScript}
+    type={import.meta.env.DEV ? 'module' : undefined}
+  ></script>
+)}
