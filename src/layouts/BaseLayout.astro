@@ -1,7 +1,7 @@
 ---
 import bebasNeueLatin from '../assets/fonts/bebas-neue-latin.woff2?url';
 import shareTechMonoLatin from '../assets/fonts/share-tech-mono-latin.woff2?url';
-import { SITE_NAME } from '../i18n/identity';
+import { SITE_NAME, THEME_COLOR } from '../i18n/identity';
 import { DEFAULT_LOCALE, LOCALES, OG_LOCALES, type Locale } from '../i18n/locales';
 import type { PageMeta } from '../i18n/ui';
 // Bundled as a standalone classic script (no imports left), so it can block rendering in the head:
@@ -61,8 +61,12 @@ const canonical = absolute(Astro.url.pathname);
     ) : (
       <meta name="robots" content="noindex" />
     )}
+    <!-- ICO for clients without SVG favicon support, SVG preferred by the others. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content={THEME_COLOR} />
     <link rel="preload" href={bebasNeueLatin} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={shareTechMonoLatin} as="font" type="font/woff2" crossorigin />
     {translations && (

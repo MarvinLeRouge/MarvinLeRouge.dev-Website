@@ -1,5 +1,6 @@
-// Generates the link preview images (public/og/home-<locale>.png, 1200 x 630) and the Apple touch icon.
-// Run by hand after changing the identity, the job title or the avatar: npm run social-images
+// Generates the link preview images (public/og/home-<locale>.png, 1200 x 630), the avatar icons
+// (Apple touch icon, web app manifest icons) and favicon.ico from favicon.svg.
+// Run by hand after changing the identity, the job title, the avatar or the favicon: npm run social-images
 // Texts come from src/i18n (TypeScript files read directly by Node, type imports only).
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -79,7 +80,41 @@ try {
   await rm(workDir, { recursive: true, force: true });
 }
 
-await sharp(join(root, 'src/assets/images/avatar.png'))
-  .resize(180, 180)
-  .png()
-  .toFile(join(output, 'apple-touch-icon.png'));
+// Avatar icons. The source is 460 px: the largest icon keeps that size rather than being upscaled.
+const avatar = join(root, 'src/assets/images/avatar.png');
+await sharp(avatar).resize(180, 180).png().toFile(join(output, 'apple-touch-icon.png'));
+// 256-color palette: about a quarter of the full-color size, no visible loss on the illustration.
+for (const size of [192, 460]) {
+  await sharp(avatar)
+    .resize(size, size)
+    .png({ palette: true, quality: 90, compressionLevel: 9 })
+    .toFile(join(output, `icon-${size}.png`));
+}
+
+/** ICO file embedding PNG images (supported by every current browser), one entry per size. */
+async function icoFromSvg(svgPath, sizes) {
+  const images = await Promise.all(
+    sizes.map((size) => sharp(svgPath, { density: 384 }).resize(size, size).png().toBuffer()),
+  );
+  const header = Buffer.alloc(6 + sizes.length * 16);
+  header.writeUInt16LE(0, 0); // reserved
+  header.writeUInt16LE(1, 2); // type: icon
+  header.writeUInt16LE(sizes.length, 4);
+  let offset = header.length;
+  sizes.forEach((size, index) => {
+    const entry = 6 + index * 16;
+    header.writeUInt8(size, entry); // width
+    header.writeUInt8(size, entry + 1); // height
+    header.writeUInt16LE(1, entry + 4); // color planes
+    header.writeUInt16LE(32, entry + 6); // bits per pixel
+    header.writeUInt32LE(images[index].length, entry + 8);
+    header.writeUInt32LE(offset, entry + 12);
+    offset += images[index].length;
+  });
+  return Buffer.concat([header, ...images]);
+}
+
+await writeFile(
+  join(output, 'favicon.ico'),
+  await icoFromSvg(join(output, 'favicon.svg'), [16, 32, 48]),
+);

@@ -56,7 +56,7 @@ npm run format:check # Prettier
 npm test             # tests unitaires (Vitest)
 npm run test:cov     # tests unitaires avec la barrière de couverture
 npm run test:e2e     # tests de bout en bout et d'accessibilité sur le site construit
-npm run social-images # régénère les images d'aperçu des liens et l'icône Apple
+npm run social-images # régénère les images d'aperçu des liens, favicon.ico et les icônes de l'avatar
 ```
 
 ### Docker
@@ -88,7 +88,7 @@ src/
 tests/
   e2e/         tests Playwright et axe sur le site construit
   unit/        tests Vitest des scripts client et de la logique des langues
-public/        fichiers servis tels quels (favicon, images d'aperçu des liens)
+public/        fichiers servis tels quels (favicons, icônes d'écran d'accueil, images d'aperçu des liens)
 docker/        configuration Nginx de l'image de production
 docs/          feuille de route, guide d'exploitation et fichiers communautaires traduits
 scripts/       utilitaires des hooks git, test de fumée Docker et générateur d'images d'aperçu

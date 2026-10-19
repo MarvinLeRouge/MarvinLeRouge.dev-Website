@@ -95,9 +95,47 @@ test.describe('site-wide files', () => {
   test('declares the favicons', async ({ page, request }) => {
     await page.goto('/');
 
-    for (const selector of ['link[rel="icon"]', 'link[rel="apple-touch-icon"]']) {
-      const href = await page.locator(selector).getAttribute('href');
-      expect((await request.get(href ?? '')).status()).toBe(200);
+    const hrefs = await page
+      .locator('link[rel="icon"], link[rel="apple-touch-icon"]')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+    expect(hrefs).toEqual(['/favicon.ico', '/favicon.svg', '/apple-touch-icon.png']);
+    for (const href of hrefs) expect((await request.get(href ?? '')).status()).toBe(200);
+  });
+
+  test('serves a favicon.ico holding the 16, 32 and 48 pixel sizes', async ({ request }) => {
+    const response = await request.get('/favicon.ico');
+    const ico = await response.body();
+
+    expect(response.headers()['content-type']).toBe('image/x-icon');
+    // ICONDIR header (reserved 0, type 1 = icon, image count), then one 16-byte entry per image.
+    expect([ico.readUInt16LE(0), ico.readUInt16LE(2)]).toEqual([0, 1]);
+    const sizes = Array.from({ length: ico.readUInt16LE(4) }, (_, index) => ico[6 + index * 16]);
+    expect(sizes).toEqual([16, 32, 48]);
+  });
+
+  test('colors the mobile browser toolbar like the page background', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#111111');
+  });
+
+  test('describes the site in a web app manifest', async ({ page, request }) => {
+    await page.goto('/');
+    const href = await page.locator('link[rel="manifest"]').getAttribute('href');
+
+    const manifest = await (await request.get(href ?? '')).json();
+    expect(manifest).toMatchObject({
+      name: 'MarvinLeRouge.dev',
+      short_name: 'MarvinLeRouge',
+      start_url: '/',
+      display: 'browser',
+      theme_color: '#111111',
+      background_color: '#111111',
+    });
+    const sizes = manifest.icons.map((icon: { sizes: string }) => icon.sizes);
+    expect(sizes).toEqual(['192x192', '460x460']);
+    for (const icon of manifest.icons) {
+      expect((await request.get(icon.src)).headers()['content-type']).toBe(icon.type);
     }
   });
 
