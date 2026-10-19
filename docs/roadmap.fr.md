@@ -22,6 +22,7 @@
 - [x] FEAT-002 - Ajouter l'identité, les liens et l'email protégé contre le spam
 - [x] FEAT-003 - Ajouter les balises meta, Open Graph, le sitemap et robots
 - [x] TEST-001 - Vérifier les règles d'écriture et les données d'identité par des tests unitaires
+- [x] FEAT-016 - Ajouter les favicons de repli, la couleur de thème et le manifeste web
 
 ## Section 4 - Fiches projet
 

@@ -19,6 +19,7 @@ automatically from Conventional Commits history.
 - Add french and english homepages with remembered language choice
 - Add civil name, linkedin link and spam-protected contact email
 - Add page metadata, link previews, favicon, sitemap and robots
+- Add favicon.ico fallback, theme color and web app manifest
 
 ### Miscellaneous
 

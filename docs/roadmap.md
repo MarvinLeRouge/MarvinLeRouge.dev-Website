@@ -22,6 +22,7 @@
 - [x] FEAT-002 - Add identity, links and spam-protected email
 - [x] FEAT-003 - Add meta tags, Open Graph, sitemap and robots
 - [x] TEST-001 - Enforce writing rules and identity data with unit tests
+- [x] FEAT-016 - Add favicon fallbacks, theme color and web app manifest
 
 ## Section 4 - Project sheets
 
