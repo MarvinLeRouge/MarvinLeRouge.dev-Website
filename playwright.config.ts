@@ -13,7 +13,7 @@ export default defineConfig({
     baseURL: externalBaseUrl ?? `http://localhost:${PORT}`,
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
-  // Serves the already built dist/: run `npm run build` first.
+  // Serves the already built dist/: run `npm run build:e2e` first (it adds the test sheet).
   webServer: externalBaseUrl
     ? undefined
     : {

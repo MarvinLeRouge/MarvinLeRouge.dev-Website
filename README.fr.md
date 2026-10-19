@@ -49,13 +49,14 @@ Nécessite Node.js 24 (voir `.nvmrc`) et gitleaks (voir [CONTRIBUTING.fr.md](doc
 npm install          # dépendances et hooks git
 npm run dev          # serveur de développement local avec rechargement à chaud
 npm run build        # build statique dans dist/
+npm run build:e2e    # idem, avec la fiche de test publiée dont les tests e2e ont besoin
 npm run preview      # sert localement le site construit
 npm run check        # diagnostics Astro et TypeScript
 npm run lint         # ESLint
 npm run format:check # Prettier
 npm test             # tests unitaires (Vitest)
 npm run test:cov     # tests unitaires avec la barrière de couverture
-npm run test:e2e     # tests de bout en bout et d'accessibilité sur le site construit
+npm run test:e2e     # tests de bout en bout et d'accessibilité sur le site construit par build:e2e
 npm run social-images # régénère les images d'aperçu des liens, favicon.ico et les icônes de l'avatar
 ```
 
@@ -67,7 +68,7 @@ Les deux services passent par le Traefik local (réseau externe `traefik-public`
 docker compose up --build                 # serveur de dev avec rechargement à chaud sur http://website.marvinlerouge.local
 docker compose --profile prod up --build  # image de production (Nginx) sur http://website-prod.marvinlerouge.local
 scripts/smoke-docker.sh http://website-prod.marvinlerouge.local   # codes HTTP, en-têtes, cache
-PLAYWRIGHT_BASE_URL=http://website-prod.marvinlerouge.local npm run test:e2e   # tests e2e avec la vraie CSP
+PLAYWRIGHT_BASE_URL=http://website-prod.marvinlerouge.local npm run test:e2e   # tests e2e avec la vraie CSP (tests de fiche sautés : pas de fiche de test dans l'image)
 ```
 
 `docker-compose.prod.yml` décrit la stack de production, déployée sur le serveur par le workflow `Build & Deploy` après chaque merge sur `main`. Déploiement, retour arrière et diagnostic : [docs/operations.fr.md](docs/operations.fr.md).

@@ -363,7 +363,7 @@ h1 .rouge {
 /* Project sheets: readable baseline, the full layout comes with the view switch (FEAT-005). */
 .project-sheet {
   width: min(100% - 2rem, 48rem);
-  margin: 3rem auto;
+  margin: 2.5rem auto 3rem;
   line-height: 1.7;
 }
 
@@ -434,4 +434,93 @@ h1 .rouge {
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+/* Sheet banner: back to the homepage and language switch. */
+.sheet-banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1.5rem;
+  background: #ffc800;
+  color: #111;
+}
+
+.sheet-banner .site-link {
+  font-family: 'Bebas Neue', monospace;
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  color: #111;
+  text-decoration: none;
+}
+
+.sheet-banner .language-switcher {
+  position: static;
+}
+
+.sheet-banner .language-switcher a {
+  color: #111;
+}
+
+.sheet-banner .language-switcher a[aria-current='page'] {
+  color: #111;
+  font-weight: bold;
+}
+
+.sheet-banner a:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 3px;
+}
+
+/* View tabs: hidden without JavaScript, where both views stay stacked. */
+html:not([data-sheet-view]) .view-tabs {
+  display: none;
+}
+
+html[data-sheet-view='recruiter'] [data-view-panel='lead-dev'],
+html[data-sheet-view='lead-dev'] [data-view-panel='recruiter'] {
+  display: none;
+}
+
+/* With tabs, the tab already names the view: the section title is kept for screen readers only. */
+html[data-sheet-view] .view-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.view-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 2rem 0 1.5rem;
+  border-bottom: 2px solid #ffc800;
+}
+
+.view-tabs [role='tab'] {
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #ffc800;
+  border-bottom: none;
+  background: transparent;
+  color: #ffc800;
+  font: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.view-tabs [role='tab'][aria-selected='true'] {
+  background: #ffc800;
+  color: #111;
+}
+
+.view-tabs [role='tab']:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }

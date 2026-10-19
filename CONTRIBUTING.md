@@ -24,14 +24,14 @@ npm run dev
 
 ## Quality checks
 
-| Command                | Purpose                                                                                |
-| ---------------------- | -------------------------------------------------------------------------------------- |
-| `npm run lint`         | ESLint (TypeScript and Astro rules)                                                    |
-| `npm run format:check` | Prettier                                                                               |
-| `npm run check`        | Astro and TypeScript diagnostics                                                       |
-| `npm run build`        | Static build into `dist/`                                                              |
-| `npm run test:cov`     | Vitest unit tests, 80% coverage gate on `src/scripts/`, `src/i18n/` and `src/content/` |
-| `npm run test:e2e`     | Playwright and axe (WCAG 2.2 A and AA) on the built site, run `npm run build` first    |
+| Command                | Purpose                                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `npm run lint`         | ESLint (TypeScript and Astro rules)                                                                           |
+| `npm run format:check` | Prettier                                                                                                      |
+| `npm run check`        | Astro and TypeScript diagnostics                                                                              |
+| `npm run build`        | Static build into `dist/`                                                                                     |
+| `npm run test:cov`     | Vitest unit tests, 80% coverage gate on `src/scripts/`, `src/i18n/` and `src/content/`                        |
+| `npm run test:e2e`     | Playwright and axe (WCAG 2.2 A and AA) on the built site, run `npm run build:e2e` first (adds the test sheet) |
 
 The pre-commit hook runs ESLint and Prettier on staged files, `astro check`, and a gitleaks scan of the staged changes. The post-commit hook regenerates `CHANGELOG.md` with git-cliff.
 

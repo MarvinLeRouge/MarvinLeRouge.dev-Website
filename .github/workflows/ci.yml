@@ -91,7 +91,6 @@ jobs:
 
   e2e:
     name: E2E and accessibility
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -105,11 +104,9 @@ jobs:
         run: npm ci
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
-      - name: Download site
-        uses: actions/download-artifact@v8
-        with:
-          name: dist
-          path: dist/
+      # Own build: it includes the published fixture sheet, absent from the real site.
+      - name: Build with the e2e fixtures
+        run: npm run build:e2e
       - name: E2E and accessibility tests
         run: npm run test:e2e
       - name: Upload report on failure

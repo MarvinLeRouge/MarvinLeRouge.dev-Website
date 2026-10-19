@@ -5,9 +5,11 @@ import { SWITCH_ATTRIBUTE } from '../scripts/language-preference';
 
 interface Props {
   locale: Locale;
+  /** Path of the current page in each locale. Defaults to the homepages. */
+  paths?: Readonly<Record<Locale, string>>;
 }
 
-const { locale } = Astro.props;
+const { locale, paths } = Astro.props;
 ---
 
 <nav class="language-switcher" aria-label={UI[locale].languageSwitcherLabel}>
@@ -15,7 +17,7 @@ const { locale } = Astro.props;
     {LOCALES.map((target) => (
       <li>
         <a
-          href={homePath(target)}
+          href={paths?.[target] ?? homePath(target)}
           hreflang={target}
           lang={target}
           aria-current={target === locale ? 'page' : undefined}
