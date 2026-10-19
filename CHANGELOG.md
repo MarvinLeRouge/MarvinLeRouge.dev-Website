@@ -26,6 +26,7 @@ automatically from Conventional Commits history.
 - Add the projects index and homepage link
 - Add architecture diagrams to project sheets
 - Write the JobFlow pilot sheet and enforce the sheet publication rules
+- Publish the JobFlow sheet with a readable link preview
 
 ### Miscellaneous
 

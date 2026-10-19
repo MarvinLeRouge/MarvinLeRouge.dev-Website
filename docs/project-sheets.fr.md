@@ -64,7 +64,7 @@ Un exemple complet se trouve dans `src/content/projects/fr/example.md` (un broui
 Chaque fiche a une capture, nommée d'après la fiche dans `src/content/projects/images/` :
 
 - `<slug>.png` : la capture affichée dans la fiche, la carte de l'index et l'aperçu des liens. **768 x 480**, recadrée à 100 % de zoom plutôt que réduite, pour que le texte reste lisible. Un PNG en palette (256 couleurs) est une bonne source.
-- `<slug>-full.avif` (facultatif) : l'image en taille réelle. La capture devient alors un lien vers elle ; avec JavaScript, elle s'ouvre dans une fenêtre modale (Échap ou le bouton "Fermer" la referment), qui défile quand l'image dépasse l'écran. Quand elle existe, l'aperçu des liens est recadré dans son coin supérieur gauche.
+- `<slug>-full.avif` (facultatif) : l'image en taille réelle. La capture devient alors un lien vers elle ; avec JavaScript, elle s'ouvre dans une fenêtre modale (Échap ou le bouton "Fermer" la referment), qui défile quand l'image dépasse l'écran. Quand elle existe, l'aperçu des liens est découpé dans son coin supérieur gauche à pleine échelle (1200 x 630), pour que son texte reste lisible.
 
 Les captures sont servies en AVIF, avec le format source en repli. Masquer tout élément personnel avant la capture : liens de suivi, identifiants d'emails, avatars de compte.
 

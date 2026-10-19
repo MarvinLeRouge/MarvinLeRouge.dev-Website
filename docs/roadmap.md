@@ -35,7 +35,7 @@
 ## Section 5 - Project sheet content
 
 - [x] FEAT-007 - Write the JobFlow pilot sheet
-- [ ] FEAT-019 - Publish the JobFlow sheet
+- [x] FEAT-019 - Publish the JobFlow sheet
 - [ ] FEAT-008 - Write the Engineering-Radar sheet
 - [ ] FEAT-009 - Write the GeoChallenge-Tracker sheet
 - [ ] FEAT-010 - Write the Summit-Stats sheet

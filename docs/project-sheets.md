@@ -64,7 +64,7 @@ See `src/content/projects/fr/example.md` for a complete example (a draft, never 
 Each sheet has a screenshot, named after the sheet in `src/content/projects/images/`:
 
 - `<slug>.png`: the screenshot shown in the sheet, the index card and the link preview. **768 x 480**, cropped at 100% zoom rather than scaled down, so the text stays readable. A palette PNG (256 colors) is a good source.
-- `<slug>-full.avif` (optional): the full size image. The screenshot then links to it; with JavaScript, it opens in a modal dialog (Escape or the "Close" button closes it), and the dialog scrolls when the image is larger than the screen. When present, the link preview is cropped from its top left corner.
+- `<slug>-full.avif` (optional): the full size image. The screenshot then links to it; with JavaScript, it opens in a modal dialog (Escape or the "Close" button closes it), and the dialog scrolls when the image is larger than the screen. When present, the link preview is cut from its top left corner at full scale (1200 x 630), so its text stays readable.
 
 Screenshots are served as AVIF, with the source format as fallback. Hide anything personal before the capture: tracking links, email identifiers, account avatars.
 
