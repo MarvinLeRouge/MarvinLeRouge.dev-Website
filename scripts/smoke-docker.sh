@@ -43,6 +43,8 @@ expect_security_headers "$home_headers" /
 expect_header "$home_headers" / '^cache-control: no-cache'
 
 expect_status /does-not-exist/ 404
+# The e2e fixture sheet is only built for the tests, never in the production image.
+expect_status /projets/e2e-fixture/ 404
 not_found_body="$(curl -sS "$base_url/does-not-exist/")"
 grep -q 'Sector not found' <<<"$not_found_body" || fail '404 page not served'
 expect_security_headers "$(headers_of "$base_url/does-not-exist/")" /does-not-exist/

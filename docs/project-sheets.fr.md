@@ -50,7 +50,18 @@ Vue lead dev, à la première personne.
 Les titres du corps commencent au niveau 3 (`###`) : le niveau 2 est le titre de la vue.
 ```
 
-Un exemple complet se trouve dans `src/content/projects/fr/example.md` (un brouillon, jamais publié).
+Un exemple complet se trouve dans `src/content/projects/fr/example.md` (un brouillon, jamais publié). Les fiches `e2e-fixture.md` sont publiées mais construites uniquement pour les tests de bout en bout (`npm run build:e2e`), jamais en production.
+
+## Vues
+
+Une fiche publiée affiche une vue à la fois, choisie avec les onglets "Vue recruteur" / "Vue lead dev" (clavier : flèches, Début, Fin). La vue recruteur s'affiche d'abord ; la vue lead dev a sa propre URL, pour l'envoyer directement :
+
+- en français : `/projets/<slug>/?vue=tech`
+- en anglais : `/en/projects/<slug>/?view=tech`
+
+La dernière vue choisie est mémorisée d'une fiche à l'autre : une URL de fiche sans paramètre ouvre cette vue. Sans JavaScript, les deux vues s'affichent l'une sous l'autre.
+
+L'image d'aperçu d'une fiche est sa capture, recadrée en 1200 x 630 : garder l'essentiel de la capture près de son centre.
 
 ## Publication
 

@@ -49,13 +49,14 @@ Requires Node.js 24 (see `.nvmrc`) and gitleaks (see [CONTRIBUTING.md](CONTRIBUT
 npm install          # dependencies and git hooks
 npm run dev          # local dev server with hot reload
 npm run build        # static build into dist/
+npm run build:e2e    # same, plus the published test sheet the e2e tests need
 npm run preview      # serve the built site locally
 npm run check        # Astro and TypeScript diagnostics
 npm run lint         # ESLint
 npm run format:check # Prettier
 npm test             # unit tests (Vitest)
 npm run test:cov     # unit tests with the coverage gate
-npm run test:e2e     # end-to-end and accessibility tests on the built site
+npm run test:e2e     # end-to-end and accessibility tests on the site built by build:e2e
 npm run social-images # regenerate the link preview images, favicon.ico and the avatar icons
 ```
 
@@ -67,7 +68,7 @@ Both services run behind the local Traefik (external network `traefik-public`). 
 docker compose up --build                 # dev server with hot reload on http://website.marvinlerouge.local
 docker compose --profile prod up --build  # production image (Nginx) on http://website-prod.marvinlerouge.local
 scripts/smoke-docker.sh http://website-prod.marvinlerouge.local   # status codes, headers, caching
-PLAYWRIGHT_BASE_URL=http://website-prod.marvinlerouge.local npm run test:e2e   # e2e tests against the real CSP
+PLAYWRIGHT_BASE_URL=http://website-prod.marvinlerouge.local npm run test:e2e   # e2e tests against the real CSP (sheet tests skipped: no test sheet in the image)
 ```
 
 `docker-compose.prod.yml` is the production stack, deployed on the server by the `Build & Deploy` workflow after each merge on `main`. Deployment, rollback and troubleshooting: [docs/operations.md](docs/operations.md).

@@ -28,6 +28,8 @@ interface HomeStrings {
 
 /** Labels of the project sheet pages. */
 interface SheetStrings {
+  /** Accessible name of the view tabs. */
+  readonly viewSwitcherLabel: string;
   readonly recruiterView: string;
   readonly leadDevView: string;
   readonly problem: string;
@@ -114,6 +116,7 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       footerDeadCodeAfter: 'code mort trouvé.',
     },
     sheet: {
+      viewSwitcherLabel: 'Vue de la fiche',
       recruiterView: 'Vue recruteur',
       leadDevView: 'Vue lead dev',
       problem: 'Problème',
@@ -175,6 +178,7 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       footerDeadCodeAfter: 'dead code found.',
     },
     sheet: {
+      viewSwitcherLabel: 'Sheet view',
       recruiterView: 'Recruiter view',
       leadDevView: 'Lead dev view',
       problem: 'Problem',

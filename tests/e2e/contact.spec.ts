@@ -15,11 +15,11 @@ for (const { path, spelledOut } of HOMEPAGES) {
       await page.goto(path);
 
       await expect(page.getByText('Jean Ceugniet')).toBeVisible();
-      await expect(page.getByRole('link', { name: /GitHub/ })).toHaveAttribute(
+      await expect(page.getByRole('link', { name: 'GitHub', exact: true })).toHaveAttribute(
         'href',
         'https://github.com/MarvinLeRouge',
       );
-      await expect(page.getByRole('link', { name: /LinkedIn/ })).toHaveAttribute(
+      await expect(page.getByRole('link', { name: 'LinkedIn', exact: true })).toHaveAttribute(
         'href',
         'https://www.linkedin.com/in/jean-ceugniet-developpeur-web/',
       );

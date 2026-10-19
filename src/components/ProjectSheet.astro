@@ -1,30 +1,63 @@
 ---
 import { Image } from 'astro:assets';
 import { render, type CollectionEntry } from 'astro:content';
-import type { Locale } from '../i18n/locales';
+import { SITE_NAME } from '../i18n/identity';
+import { homePath, type Locale } from '../i18n/locales';
 import { UI } from '../i18n/ui';
+import { PANEL_ATTRIBUTE, TAB_ATTRIBUTE, VIEWS } from '../scripts/sheet-view';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
   sheet: CollectionEntry<'projects'>;
   locale: Locale;
+  /** Path of the sheet in each locale, when it is translated. */
+  translations?: Readonly<Record<Locale, string>>;
 }
 
-const { sheet, locale } = Astro.props;
+const { sheet, locale, translations } = Astro.props;
 const { data } = sheet;
 const t = UI[locale].sheet;
 const { Content } = await render(sheet);
+const viewTitles = { recruiter: t.recruiterView, 'lead-dev': t.leadDevView };
 ---
 
-<!-- Both views stacked: the rendering without JavaScript. The view switch comes with FEAT-005. -->
-<article class="project-sheet">
+<header class="sheet-banner">
+  <a class="site-link" href={homePath(locale)}>
+    {SITE_NAME}
+  </a>
+  <LanguageSwitcher locale={locale} paths={translations} />
+</header>
+
+<main class="project-sheet">
   <header>
     {data.draft && <p class="draft-notice">{t.draftNotice}</p>}
     <h1>{data.title}</h1>
     <p class="tagline">{data.tagline}</p>
+    <!-- Hidden without JavaScript, where both views are shown one after the other. -->
+    <div class="view-tabs" role="tablist" aria-label={t.viewSwitcherLabel}>
+      {VIEWS.map((view, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${view}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          tabindex={index === 0 ? 0 : -1}
+          {...{ [TAB_ATTRIBUTE]: view }}
+        >
+          {viewTitles[view]}
+        </button>
+      ))}
+    </div>
   </header>
 
-  <section aria-labelledby="recruiter-view">
-    <h2 id="recruiter-view">{t.recruiterView}</h2>
+  <section
+    id="view-recruiter"
+    aria-labelledby="recruiter-title"
+    {...{ [PANEL_ATTRIBUTE]: 'recruiter' }}
+  >
+    <h2 id="recruiter-title" class="view-title">
+      {t.recruiterView}
+    </h2>
     <Image src={data.screenshot.src} alt={data.screenshot.alt} />
     <dl>
       <dt>{t.problem}</dt>
@@ -56,8 +89,14 @@ const { Content } = await render(sheet);
     </ul>
   </section>
 
-  <section aria-labelledby="lead-dev-view">
-    <h2 id="lead-dev-view">{t.leadDevView}</h2>
+  <section
+    id="view-lead-dev"
+    aria-labelledby="lead-dev-title"
+    {...{ [PANEL_ATTRIBUTE]: 'lead-dev' }}
+  >
+    <h2 id="lead-dev-title" class="view-title">
+      {t.leadDevView}
+    </h2>
     <Content />
     {data.adrs && (
       <>
@@ -72,4 +111,4 @@ const { Content } = await render(sheet);
       </>
     )}
   </section>
-</article>
+</main>

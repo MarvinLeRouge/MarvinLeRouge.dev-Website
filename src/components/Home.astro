@@ -66,8 +66,14 @@ const t = UI[locale].home;
     </div>
 
     <div class="links">
-      <a href={GITHUB_URL}>→ {t.githubLink}</a>
-      <a href={LINKEDIN_URL}>→ {t.linkedinLink}</a>
+      <a href={GITHUB_URL}>
+        <span aria-hidden="true">→ </span>
+        {t.githubLink}
+      </a>
+      <a href={LINKEDIN_URL}>
+        <span aria-hidden="true">→ </span>
+        {t.linkedinLink}
+      </a>
     </div>
 
     <EmailLink locale={locale} />

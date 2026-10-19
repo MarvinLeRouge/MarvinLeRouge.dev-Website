@@ -21,7 +21,8 @@
     "test:cov": "vitest run --coverage",
     "test:e2e": "playwright test",
     "prepare": "husky",
-    "social-images": "node scripts/generate-social-images.mjs"
+    "social-images": "node scripts/generate-social-images.mjs",
+    "build:e2e": "E2E_FIXTURES=1 astro build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

@@ -1,10 +1,12 @@
 ---
+import { getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import ProjectSheet from '../../../components/ProjectSheet.astro';
 import { sheetRoutes } from '../../../content/projects';
 import { SITE_NAME } from '../../../i18n/identity';
-import { UI } from '../../../i18n/ui';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+// Blocking head script: picks the view before the first paint (see sheet-view.ts and BaseLayout).
+import sheetViewScript from '../../../scripts/sheet-view-entry.ts?worker&url';
 
 export async function getStaticPaths() {
   // Drafts are only built by the development server, for review.
@@ -12,6 +14,14 @@ export async function getStaticPaths() {
 }
 
 const { sheet, translations } = Astro.props;
+// Link preview: the screenshot, cropped to the 1200 x 630 Open Graph format.
+const preview = await getImage({
+  src: sheet.data.screenshot.src,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  format: 'png',
+});
 ---
 
 <BaseLayout
@@ -20,10 +30,15 @@ const { sheet, translations } = Astro.props;
   translations={translations}
   meta={{
     description: sheet.data.tagline,
-    // Site-wide preview image until sheets get their own (FEAT-005).
-    image: '/og/home-en.png',
-    imageAlt: UI.en.homeMeta.imageAlt,
+    image: preview.src,
+    imageAlt: sheet.data.screenshot.alt,
   }}
 >
-  <ProjectSheet sheet={sheet} locale="en" />
+  <script
+    slot="head"
+    is:inline
+    src={sheetViewScript}
+    type={import.meta.env.DEV ? 'module' : undefined}
+  ></script>
+  <ProjectSheet sheet={sheet} locale="en" translations={translations} />
 </BaseLayout>

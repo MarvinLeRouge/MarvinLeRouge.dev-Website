@@ -50,7 +50,18 @@ Lead dev view, in the first person.
 Body headings start at level 3 (`###`): level 2 is the view title.
 ```
 
-See `src/content/projects/fr/example.md` for a complete example (a draft, never published).
+See `src/content/projects/fr/example.md` for a complete example (a draft, never published). The `e2e-fixture.md` sheets are published but only built for the end-to-end tests (`npm run build:e2e`), never in production.
+
+## Views
+
+A published sheet shows one view at a time, selected with the "Recruiter view" / "Lead dev view" tabs (keyboard: arrow keys, Home, End). The recruiter view is shown first; the lead dev view has its own URL, to send it directly:
+
+- French: `/projets/<slug>/?vue=tech`
+- English: `/en/projects/<slug>/?view=tech`
+
+The last view picked is remembered across sheets: a sheet URL without parameter opens that view. Without JavaScript, both views are shown one after the other.
+
+The link preview image of a sheet is its screenshot, cropped to 1200 x 630: keep the important part of the screenshot near its center.
 
 ## Publication
 
