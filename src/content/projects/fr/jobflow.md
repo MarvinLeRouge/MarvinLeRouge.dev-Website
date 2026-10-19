@@ -23,7 +23,7 @@ adrs:
   - title: "ADR-0006 : garde-fou d'erreur persistant"
     url: https://github.com/MarvinLeRouge/JobFlow/blob/8533e80c97c7678ec264762eb2f6bb4633820126/docs/adr/0006-persistent-error-gate.md
 order: 2
-draft: true
+draft: false
 ---
 
 JobFlow est né d'un agacement très concret : chaque matin, une pile d'alertes emploi, dont la moitié annonçait la même offre sous trois habillages différents. J'ai fini par écrire le pipeline que j'aurais aimé trouver.

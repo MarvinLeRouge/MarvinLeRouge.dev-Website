@@ -23,7 +23,7 @@ adrs:
   - title: 'ADR-0006: persistent error gate'
     url: https://github.com/MarvinLeRouge/JobFlow/blob/8533e80c97c7678ec264762eb2f6bb4633820126/docs/adr/0006-persistent-error-gate.md
 order: 2
-draft: true
+draft: false
 ---
 
 JobFlow was born out of a very concrete annoyance: every morning, a pile of job alerts, half of them announcing the same offer in three different outfits. I ended up writing the pipeline I wish I had found.

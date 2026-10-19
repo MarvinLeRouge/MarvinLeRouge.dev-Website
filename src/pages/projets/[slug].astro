@@ -2,7 +2,7 @@
 import { getImage } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import ProjectSheet from '../../components/ProjectSheet.astro';
-import { sheetRoutes } from '../../content/projects';
+import { sheetRoutes, sheetSlug } from '../../content/projects';
 import { SITE_NAME } from '../../i18n/identity';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 // Blocking head script: picks the view before the first paint (see sheet-view.ts and BaseLayout).
@@ -14,17 +14,12 @@ export async function getStaticPaths() {
 }
 
 const { sheet, translations } = Astro.props;
-// Link preview: the screenshot cropped to the 1200 x 630 Open Graph format. The full size image,
-// when there is one, is large enough to crop without upscaling: its top left, like the thumbnail.
+// Link preview: cut at full scale from the full size screenshot when there is one (see
+// src/pages/og/projects), else the screenshot cropped to the 1200 x 630 Open Graph format.
 const { full, src } = sheet.data.screenshot;
-const preview = await getImage({
-  src: full ?? src,
-  width: 1200,
-  height: 630,
-  fit: 'cover',
-  position: full ? 'left top' : 'center',
-  format: 'png',
-});
+const preview = full
+  ? { src: `/og/projects/${sheetSlug(sheet.id)}.png` }
+  : await getImage({ src, width: 1200, height: 630, fit: 'cover', format: 'png' });
 ---
 
 <BaseLayout

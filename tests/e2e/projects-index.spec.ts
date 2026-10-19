@@ -103,3 +103,27 @@ test('keeps the banner within a 320 pixel wide screen', async ({ page }) => {
   );
   expect(overflow).toBe(0);
 });
+
+// Every sheet listed in the indexes, real ones included, in both views.
+for (const index of ['/projets/', '/en/projects/']) {
+  test(`has no detectable WCAG 2.2 A or AA violations on the sheets of ${index}`, async ({
+    page,
+  }) => {
+    await page.goto(index);
+    const sheets = await page
+      .locator('.project-card h2 a')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+    expect(sheets.length).toBeGreaterThan(0);
+
+    const param = index === '/projets/' ? 'vue' : 'view';
+    for (const sheet of sheets) {
+      for (const view of ['', `?${param}=tech`]) {
+        await page.goto(`${sheet}${view}`);
+        const results = await new AxeBuilder({ page })
+          .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+          .analyze();
+        expect(results.violations, `${sheet}${view}`).toEqual([]);
+      }
+    }
+  });
+}
