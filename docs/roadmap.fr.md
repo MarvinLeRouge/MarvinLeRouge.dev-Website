@@ -34,7 +34,8 @@
 
 ## Section 5 - Contenu des fiches projet
 
-- [ ] FEAT-007 - Rédiger la fiche pilote JobFlow
+- [x] FEAT-007 - Rédiger la fiche pilote JobFlow
+- [ ] FEAT-019 - Publier la fiche JobFlow
 - [ ] FEAT-008 - Rédiger la fiche Engineering-Radar
 - [ ] FEAT-009 - Rédiger la fiche GeoChallenge-Tracker
 - [ ] FEAT-010 - Rédiger la fiche Summit-Stats

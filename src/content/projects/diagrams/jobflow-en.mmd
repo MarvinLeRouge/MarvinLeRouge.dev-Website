@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph collect [Collection]
+    direction LR
+    gmail[Alerts in Gmail] --> fetch[Gmail API fetch]
+    fetch --> ledger[(JSON ledger by Message-ID)]
+  end
+  subgraph process [Processing]
+    direction LR
+    extract[Per-provider parsing] --> dedup[Deduplication and filters]
+    dedup --> gate{Error gate}
+    gate --> sheet[Google Sheets]
+  end
+  collect --> process
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class gate accent

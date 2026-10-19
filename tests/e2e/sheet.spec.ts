@@ -25,6 +25,12 @@ test.describe('project sheet', () => {
     await expect(page).toHaveURL((url) => url.search === '');
   });
 
+  test('shows the latest change under the tagline', async ({ page }) => {
+    await page.goto(FR_SHEET);
+
+    await expect(page.locator('.last-action')).toHaveText(/Dernière évolution :\s+\S/);
+  });
+
   test('opens the lead dev view from the URL', async ({ page }) => {
     await page.goto(`${FR_SHEET}?vue=tech`);
 
@@ -182,5 +188,58 @@ test.describe('project sheet diagrams', () => {
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
     );
     expect(pageOverflow).toBe(0);
+  });
+});
+
+test.describe('project sheet full size screenshot', () => {
+  const link = (page: Page) => page.getByRole('link', { name: /Capture factice/ });
+
+  test('opens the full size image in a modal dialog, closed with Escape', async ({ page }) => {
+    await page.goto(FR_SHEET);
+    await expect(link(page)).toHaveAccessibleDescription('Voir la capture en taille réelle');
+
+    await link(page).click();
+    const dialog = page.getByRole('dialog', { name: /Capture factice/ });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole('button', { name: 'Fermer' })).toBeFocused();
+    await expect(dialog.getByRole('img', { name: /Capture factice/ })).toBeVisible();
+    await expect(page).toHaveURL((url) => url.pathname === FR_SHEET);
+
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(link(page)).toBeFocused();
+  });
+
+  test('closes the dialog with its button', async ({ page }) => {
+    await page.goto(FR_SHEET);
+    await link(page).click();
+
+    await page.getByRole('button', { name: 'Fermer' }).click();
+    await expect(page.getByRole('dialog')).toBeHidden();
+  });
+
+  test('has no detectable WCAG 2.2 A or AA violations with the dialog open', async ({ page }) => {
+    await page.goto(FR_SHEET);
+    await link(page).click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+
+    expect(results.violations).toEqual([]);
+  });
+
+  test.describe('without JavaScript', () => {
+    test.use({ javaScriptEnabled: false });
+
+    test('links to the full size image', async ({ page }) => {
+      await page.goto(FR_SHEET);
+      const href = await link(page).getAttribute('href');
+
+      const response = await page.request.get(href ?? '');
+      expect(response.ok()).toBe(true);
+      expect(response.headers()['content-type']).toMatch(/^image\//);
+    });
   });
 });

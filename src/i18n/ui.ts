@@ -43,6 +43,11 @@ interface SheetStrings {
   readonly viewSwitcherLabel: string;
   readonly recruiterView: string;
   readonly leadDevView: string;
+  /** Link from the screenshot to its full size version, and close button of the dialog. */
+  readonly fullScreenshot: string;
+  readonly closeScreenshot: string;
+  /** Label of the latest notable change, shown under the tagline, punctuation included. */
+  readonly lastAction: string;
   readonly problem: string;
   readonly built: string;
   readonly result: string;
@@ -140,6 +145,9 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       viewSwitcherLabel: 'Vue de la fiche',
       recruiterView: 'Vue recruteur',
       leadDevView: 'Vue lead dev',
+      lastAction: 'Dernière évolution :',
+      fullScreenshot: 'Voir la capture en taille réelle',
+      closeScreenshot: 'Fermer',
       problem: 'Problème',
       built: 'Ce qui a été construit',
       result: 'Résultat',
@@ -211,6 +219,9 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       viewSwitcherLabel: 'Sheet view',
       recruiterView: 'Recruiter view',
       leadDevView: 'Lead dev view',
+      lastAction: 'Latest change:',
+      fullScreenshot: 'See the screenshot at full size',
+      closeScreenshot: 'Close',
       problem: 'Problem',
       built: 'What was built',
       result: 'Result',

@@ -86,7 +86,7 @@ src/
   i18n/        langues, liens d'identité et tous les textes affichés (FR, EN)
   layouts/     gabarits de page (en-tête du document, structure commune)
   pages/       un fichier par route
-  scripts/     scripts client (préférence de langue, affichage de l'email)
+  scripts/     scripts client (préférence de langue, affichage de l'email, sélecteur de vue des fiches, agrandissement des captures)
   styles/      feuilles de style globales
 tests/
   e2e/         tests Playwright et axe sur le site construit

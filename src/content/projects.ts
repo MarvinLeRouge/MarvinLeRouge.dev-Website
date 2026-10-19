@@ -64,6 +64,7 @@ export function sheetRoutes<Entry extends SheetEntry>(
 ) {
   // Drafts included: an order clash must fail before the draft gets published.
   assertUniqueOrder(entries);
+  assertTranslated(entries);
   // Drafts are dropped first, so a published sheet never links to a draft translation.
   const visible = entries.filter((entry) => includeDrafts || !entry.data.draft);
   return visibleSheets(visible, locale, true).map((sheet) => {
@@ -109,4 +110,20 @@ export function indexRoutes(
   return visibleSheets(entries, locale, includeDrafts).length > 0
     ? [{ params: { index: undefined } }]
     : [];
+}
+
+/**
+ * Fails the build when a published sheet lacks its published translation: every language of the
+ * site shows the same projects, so a sheet is published in all of them at once.
+ */
+export function assertTranslated(entries: readonly SheetEntry[]): void {
+  const published = new Set(entries.filter((entry) => !entry.data.draft).map((entry) => entry.id));
+  for (const id of published) {
+    for (const locale of LOCALES) {
+      const translation = `${locale}/${sheetSlug(id)}`;
+      if (!published.has(translation)) {
+        throw new Error(`Published sheet "${id}" needs its published translation "${translation}"`);
+      }
+    }
+  }
 }

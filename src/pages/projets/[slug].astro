@@ -14,12 +14,15 @@ export async function getStaticPaths() {
 }
 
 const { sheet, translations } = Astro.props;
-// Link preview: the screenshot, cropped to the 1200 x 630 Open Graph format.
+// Link preview: the screenshot cropped to the 1200 x 630 Open Graph format. The full size image,
+// when there is one, is large enough to crop without upscaling: its top left, like the thumbnail.
+const { full, src } = sheet.data.screenshot;
 const preview = await getImage({
-  src: sheet.data.screenshot.src,
+  src: full ?? src,
   width: 1200,
   height: 630,
   fit: 'cover',
+  position: full ? 'left top' : 'center',
   format: 'png',
 });
 ---

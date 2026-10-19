@@ -6,12 +6,14 @@ stack: [TypeScript]
 repo: https://github.com/MarvinLeRouge/MarvinLeRouge.dev-Website
 screenshot:
   src: ../images/example.png
+  full: ../images/example.png
   alt: Placeholder screenshot of the test sheet
 keywords: [Testing, Accessibility, CI]
 recruiter:
   problem: Check the sheet layout on the built site.
   built: A published sheet, absent from the real site.
   result: The view switch is tested in production conditions.
+lastAction: Added an architecture diagram
 order: 1
 draft: false
 ---
@@ -24,6 +26,22 @@ Lead dev view of the test sheet.
 
 The Markdown sheet goes through the Astro build, which produces the static site and feeds the end-to-end tests.
 
-### Details
+### Key decisions
 
-Lead dev view text.
+Section text.
+
+### A difficulty
+
+Section text.
+
+### Quality
+
+Section text.
+
+### Timeline
+
+Section text.
+
+### What I would do differently
+
+Section text.

@@ -1,6 +1,6 @@
 import { z } from 'astro/zod';
 import { describe, expect, it } from 'vitest';
-import { projectSchema } from '../../../src/content/project-schema';
+import { LEAD_DEV_SECTIONS, projectSchema } from '../../../src/content/project-schema';
 
 // Stands in for Astro's image() helper, only available inside the content layer.
 const schema = projectSchema(z.string());
@@ -29,6 +29,7 @@ describe('projectSchema', () => {
     const sheet = {
       ...validSheet,
       draft: false,
+      lastAction: 'Added a provider',
       adrs: [
         {
           title: 'ADR-0001',
@@ -66,5 +67,30 @@ describe('projectSchema', () => {
   it('rejects a non-positive or fractional order', () => {
     expect(issuePaths({ ...validSheet, order: 0 })).toEqual(['order']);
     expect(issuePaths({ ...validSheet, order: 1.5 })).toEqual(['order']);
+  });
+});
+
+describe('lastAction', () => {
+  it('is optional on a draft', () => {
+    expect(issuePaths(validSheet)).toEqual([]);
+  });
+
+  it('is required to publish a sheet', () => {
+    expect(issuePaths({ ...validSheet, draft: false })).toEqual(['lastAction']);
+    expect(issuePaths({ ...validSheet, draft: false, lastAction: 'Added a provider' })).toEqual([]);
+  });
+});
+
+describe('LEAD_DEV_SECTIONS', () => {
+  it('lists the same number of sections in every locale', () => {
+    expect(LEAD_DEV_SECTIONS.fr).toHaveLength(6);
+    expect(LEAD_DEV_SECTIONS.en).toHaveLength(LEAD_DEV_SECTIONS.fr.length);
+  });
+});
+
+describe('screenshot.full', () => {
+  it('accepts an optional full size image', () => {
+    const screenshot = { ...validSheet.screenshot, full: './example-full.png' };
+    expect(issuePaths({ ...validSheet, screenshot })).toEqual([]);
   });
 });
