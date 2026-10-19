@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectsIndex from '../../components/ProjectsIndex.astro';
+import { indexRoutes } from '../../content/projects';
+
+// Rest route so the index can be skipped: it is only built once a sheet is visible.
+export async function getStaticPaths() {
+  return indexRoutes(await getCollection('projects'), 'fr', import.meta.env.DEV);
+}
+---
+
+<ProjectsIndex locale="fr" />

@@ -39,7 +39,7 @@ adrs: # facultatif
   - title: 'ADR-0002 : registre JSON indexé par Message-ID'
     url: https://github.com/MarvinLeRouge/JobFlow/blob/main/docs/adr/0002-....md
 demo: https://... # facultatif, https
-order: 1 # position dans l'index des projets
+order: 1 # position dans l'index des projets, unique par langue
 draft: true # true par défaut
 ---
 
@@ -64,6 +64,8 @@ La dernière vue choisie est mémorisée d'une fiche à l'autre : une URL de fic
 L'image d'aperçu d'une fiche est sa capture, recadrée en 1200 x 630 : garder l'essentiel de la capture près de son centre.
 
 ## Publication
+
+L'index des projets (`/projets/`, `/en/projects/`) liste les fiches publiées d'une langue dans l'ordre `order`, et la page d'accueil y renvoie. Les deux n'apparaissent qu'une fois qu'une fiche est publiée dans la langue : publier la première fiche les ajoute, sans autre modification.
 
 - Une fiche est un **brouillon par défaut**. Les brouillons sont visibles avec `npm run dev` pour la relecture, et jamais construits en production.
 - Publier une fiche demande un `draft: false` explicite, après relecture par le développeur.

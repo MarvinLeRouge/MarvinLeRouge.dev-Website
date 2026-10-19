@@ -23,6 +23,7 @@ automatically from Conventional Commits history.
 - Replace the favicon with a more legible design
 - Add the project sheet content collection
 - Add the project sheet layout and recruiter / lead dev view switch
+- Add the projects index and homepage link
 
 ### Miscellaneous
 

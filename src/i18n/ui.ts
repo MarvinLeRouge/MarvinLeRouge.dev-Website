@@ -26,6 +26,17 @@ interface HomeStrings {
   readonly footerDeadCodeAfter: string;
 }
 
+/** Texts of the projects index, and of the links leading to it. */
+interface ProjectsStrings {
+  /** Accessible name of the site navigation in the banner of the inner pages. */
+  readonly navLabel: string;
+  /** Label of the links to the index (homepage, sheet banner). */
+  readonly link: string;
+  readonly title: string;
+  readonly intro: string;
+  readonly description: string;
+}
+
 /** Labels of the project sheet pages. */
 interface SheetStrings {
   /** Accessible name of the view tabs. */
@@ -59,6 +70,7 @@ interface UiStrings {
   readonly languageName: string;
   readonly homeMeta: PageMeta;
   readonly home: HomeStrings;
+  readonly projects: ProjectsStrings;
   readonly sheet: SheetStrings;
 }
 
@@ -114,6 +126,15 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       footerDeadCodeBefore: 'aucun',
       footerDeadCodeStruck: 'corps',
       footerDeadCodeAfter: 'code mort trouvé.',
+    },
+    projects: {
+      navLabel: 'Navigation du site',
+      link: 'Projets',
+      title: 'Projets',
+      intro:
+        'Pour chaque projet, deux lectures : une vue recruteur en 30 secondes, une vue lead dev qui détaille les choix techniques.',
+      description:
+        'Projets de Jean Ceugniet, développeur backend / Data Engineer : vue recruteur et vue technique pour chacun.',
     },
     sheet: {
       viewSwitcherLabel: 'Vue de la fiche',
@@ -176,6 +197,15 @@ export const UI: Readonly<Record<Locale, UiStrings>> = {
       footerDeadCodeBefore: 'no',
       footerDeadCodeStruck: 'remains',
       footerDeadCodeAfter: 'dead code found.',
+    },
+    projects: {
+      navLabel: 'Site navigation',
+      link: 'Projects',
+      title: 'Projects',
+      intro:
+        'Two ways to read each project: a 30-second recruiter view, and a lead dev view detailing the technical choices.',
+      description:
+        'Projects by Jean Ceugniet, Backend Developer / Data Engineer: a recruiter view and a technical view for each.',
     },
     sheet: {
       viewSwitcherLabel: 'Sheet view',

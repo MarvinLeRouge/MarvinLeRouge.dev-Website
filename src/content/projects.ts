@@ -23,9 +23,14 @@ export function sheetSlug(id: string): string {
   return id.slice(id.indexOf('/') + 1);
 }
 
+/** Public URL of the projects index of a locale. */
+export function indexPath(locale: Locale): string {
+  return `${homePath(locale)}${SHEETS_SEGMENT[locale]}/`;
+}
+
 /** Public URL of a sheet. */
 export function sheetPath(locale: Locale, slug: string): string {
-  return `${homePath(locale)}${SHEETS_SEGMENT[locale]}/${slug}/`;
+  return `${indexPath(locale)}${slug}/`;
 }
 
 /** Sheets of a locale in display order, drafts included only on request (development). */
@@ -57,6 +62,8 @@ export function sheetRoutes<Entry extends SheetEntry>(
   locale: Locale,
   includeDrafts: boolean,
 ) {
+  // Drafts included: an order clash must fail before the draft gets published.
+  assertUniqueOrder(entries);
   // Drafts are dropped first, so a published sheet never links to a draft translation.
   const visible = entries.filter((entry) => includeDrafts || !entry.data.draft);
   return visibleSheets(visible, locale, true).map((sheet) => {
@@ -70,4 +77,36 @@ export function sheetRoutes<Entry extends SheetEntry>(
       : undefined;
     return { params: { slug }, props: { sheet, translations } };
   });
+}
+
+/**
+ * Fails the build when two sheets of a locale share an `order`: their position in the index
+ * would depend on the file loading order.
+ */
+export function assertUniqueOrder(entries: readonly SheetEntry[]): void {
+  const seen = new Map<string, string>();
+  for (const entry of entries) {
+    const key = `${sheetLocale(entry.id)}:${entry.data.order}`;
+    const other = seen.get(key);
+    if (other !== undefined) {
+      throw new Error(
+        `Project sheets share order ${entry.data.order}: "${other}" and "${entry.id}"`,
+      );
+    }
+    seen.set(key, entry.id);
+  }
+}
+
+/**
+ * Static route of the projects index of a locale, for `getStaticPaths` of a rest route:
+ * the index only exists once the locale has a visible sheet.
+ */
+export function indexRoutes(
+  entries: readonly SheetEntry[],
+  locale: Locale,
+  includeDrafts: boolean,
+): { params: { index: undefined } }[] {
+  return visibleSheets(entries, locale, includeDrafts).length > 0
+    ? [{ params: { index: undefined } }]
+    : [];
 }

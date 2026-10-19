@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
+  assertUniqueOrder,
+  indexPath,
+  indexRoutes,
   sheetLocale,
   sheetPath,
   sheetRoutes,
@@ -86,5 +89,49 @@ describe('sheetRoutes', () => {
     const withDraftTranslation = [entry('fr/gamma', 4), entry('en/gamma', 4, true)];
 
     expect(sheetRoutes(withDraftTranslation, 'fr', false)[0].props.translations).toBeUndefined();
+  });
+});
+
+describe('indexPath', () => {
+  it('builds the localized projects index URL', () => {
+    expect(indexPath('fr')).toBe('/projets/');
+    expect(indexPath('en')).toBe('/en/projects/');
+  });
+});
+
+describe('indexRoutes', () => {
+  it('builds the index when the locale has a visible sheet', () => {
+    expect(indexRoutes(entries, 'fr', false)).toEqual([{ params: { index: undefined } }]);
+  });
+
+  it('builds no index without a visible sheet', () => {
+    const draftsOnly = [entry('fr/draft', 1, true)];
+    expect(indexRoutes(draftsOnly, 'fr', false)).toEqual([]);
+    expect(indexRoutes(draftsOnly, 'en', true)).toEqual([]);
+  });
+
+  it('builds the index from drafts in development', () => {
+    expect(indexRoutes([entry('fr/draft', 1, true)], 'fr', true)).toHaveLength(1);
+  });
+});
+
+describe('assertUniqueOrder', () => {
+  it('accepts distinct orders, and equal orders in different locales', () => {
+    expect(() => assertUniqueOrder(entries)).not.toThrow();
+  });
+
+  it('rejects two sheets of a locale sharing an order, naming both', () => {
+    const clash = [...entries, entry('fr/gamma', 2)];
+    expect(() => assertUniqueOrder(clash)).toThrow(/order 2.*fr\/beta.*fr\/gamma/);
+  });
+
+  it('counts drafts, so a clash fails before the draft is published', () => {
+    expect(() => sheetRoutes([entry('fr/a', 1), entry('fr/b', 1, true)], 'fr', false)).toThrow(
+      /order 1/,
+    );
+  });
+
+  it('is checked when building the sheet routes', () => {
+    expect(() => sheetRoutes([entry('fr/a', 1), entry('fr/b', 1)], 'fr', false)).toThrow(/order 1/);
   });
 });

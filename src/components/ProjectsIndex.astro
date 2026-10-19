@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import { indexPath, indexRoutes, sheetPath, sheetSlug, visibleSheets } from '../content/projects';
+import { SITE_NAME } from '../i18n/identity';
+import { LOCALES, type Locale } from '../i18n/locales';
+import { UI } from '../i18n/ui';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteBanner from './SiteBanner.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const all = await getCollection('projects');
+const sheets = visibleSheets(all, locale, import.meta.env.DEV);
+// Hreflang alternates only when the other index exists too.
+const translated = LOCALES.every((other) => indexRoutes(all, other, import.meta.env.DEV).length);
+const translations = translated
+  ? (Object.fromEntries(LOCALES.map((other) => [other, indexPath(other)])) as Record<
+      Locale,
+      string
+    >)
+  : undefined;
+const t = UI[locale].projects;
+---
+
+<BaseLayout
+  title={`${t.title} | ${SITE_NAME}`}
+  locale={locale}
+  translations={translations}
+  meta={{
+    description: t.description,
+    image: `/og/home-${locale}.png`,
+    imageAlt: UI[locale].homeMeta.imageAlt,
+  }}
+>
+  <SiteBanner locale={locale} paths={translations} onIndex />
+  <main class="projects-index">
+    <h1>{t.title}</h1>
+    <p class="intro">{t.intro}</p>
+    <ul class="project-list">
+      {sheets.map((sheet) => (
+        <li class="project-card">
+          <Image src={sheet.data.screenshot.src} alt="" width={640} />
+          <h2>
+            <a href={sheetPath(locale, sheetSlug(sheet.id))}>{sheet.data.title}</a>
+          </h2>
+          {sheet.data.draft && <p class="draft-notice">{UI[locale].sheet.draftNotice}</p>}
+          <p>{sheet.data.tagline}</p>
+          <p class="keywords">{sheet.data.keywords.join(' · ')}</p>
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
