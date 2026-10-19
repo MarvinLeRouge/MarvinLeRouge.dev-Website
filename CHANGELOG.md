@@ -20,6 +20,7 @@ automatically from Conventional Commits history.
 - Add civil name, linkedin link and spam-protected contact email
 - Add page metadata, link previews, favicon, sitemap and robots
 - Add favicon.ico fallback, theme color and web app manifest
+- Add the project sheet content collection
 
 ### Miscellaneous
 

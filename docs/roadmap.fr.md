@@ -26,7 +26,7 @@
 
 ## Section 4 - Fiches projet
 
-- [ ] FEAT-004 - Ajouter la collection de contenu des fiches projet
+- [x] FEAT-004 - Ajouter la collection de contenu des fiches projet
 - [ ] FEAT-005 - Ajouter le gabarit de fiche et le sélecteur de vue recruteur / lead dev
 - [ ] FEAT-006 - Ajouter l'index des projets et le lien depuis l'accueil
 

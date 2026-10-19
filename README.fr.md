@@ -80,6 +80,7 @@ PLAYWRIGHT_BASE_URL=http://website-prod.marvinlerouge.local npm run test:e2e   #
 src/
   assets/      polices et avatar auto-hébergés, licences des polices
   components/  sections de page réutilisables
+  content/     fiches projet (Markdown, FR et EN) et leur schéma, voir docs/project-sheets.fr.md
   i18n/        langues, liens d'identité et tous les textes affichés (FR, EN)
   layouts/     gabarits de page (en-tête du document, structure commune)
   pages/       un fichier par route
@@ -90,7 +91,7 @@ tests/
   unit/        tests Vitest des scripts client et de la logique des langues
 public/        fichiers servis tels quels (favicons, icônes d'écran d'accueil, images d'aperçu des liens)
 docker/        configuration Nginx de l'image de production
-docs/          feuille de route, guide d'exploitation et fichiers communautaires traduits
+docs/          feuille de route, guide d'exploitation, guide des fiches projet et fichiers communautaires traduits
 scripts/       utilitaires des hooks git, test de fumée Docker et générateur d'images d'aperçu
 ```
 
