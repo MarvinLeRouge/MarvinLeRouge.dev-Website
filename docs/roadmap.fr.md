@@ -43,7 +43,8 @@
 - [ ] FEAT-021 - Publier la fiche Summit-Stats
 - [x] FEAT-011 - Rédiger la fiche Triton
 - [ ] FEAT-022 - Publier la fiche Triton
-- [ ] FEAT-012 - Rédiger la fiche HexaRot
+- [x] FEAT-012 - Rédiger la fiche HexaRot
+- [ ] FEAT-023 - Publier la fiche HexaRot
 
 ## Section 6 - Décisions en attente
 
