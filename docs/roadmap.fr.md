@@ -39,7 +39,8 @@
 - [ ] FEAT-008 - Rédiger la fiche Engineering-Radar
 - [x] FEAT-009 - Rédiger la fiche GeoChallenge-Tracker
 - [ ] FEAT-020 - Publier la fiche GeoChallenge-Tracker
-- [ ] FEAT-010 - Rédiger la fiche Summit-Stats
+- [x] FEAT-010 - Rédiger la fiche Summit-Stats
+- [ ] FEAT-021 - Publier la fiche Summit-Stats
 - [ ] FEAT-011 - Rédiger la fiche Triton
 - [ ] FEAT-012 - Rédiger la fiche HexaRot
 

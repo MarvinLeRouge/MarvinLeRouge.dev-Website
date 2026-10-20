@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph analyse [Analyse]
+    direction LR
+    gpx[Trace GPX] --> parse[Parsing]
+    parse --> smooth[Altitude enrichie et lissée]
+    smooth --> seg{Segments par classe de pente}
+  end
+  subgraph restitution [Restitution]
+    direction LR
+    db[(PostgreSQL, 22 métriques par sortie)] --> api[API Laravel]
+    api --> ui[Vue 3, Chart.js et Leaflet]
+  end
+  analyse --> restitution
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class seg accent

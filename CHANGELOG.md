@@ -28,6 +28,7 @@ automatically from Conventional Commits history.
 - Write the JobFlow pilot sheet and enforce the sheet publication rules
 - Publish the JobFlow sheet with a readable link preview
 - Write the GeoChallenge-Tracker sheet as a draft
+- Write the Summit-Stats sheet as a draft
 
 ### Miscellaneous
 
