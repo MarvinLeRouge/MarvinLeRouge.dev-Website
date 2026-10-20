@@ -43,7 +43,8 @@
 - [ ] FEAT-021 - Publish the Summit-Stats sheet
 - [x] FEAT-011 - Write the Triton sheet
 - [ ] FEAT-022 - Publish the Triton sheet
-- [ ] FEAT-012 - Write the HexaRot sheet
+- [x] FEAT-012 - Write the HexaRot sheet
+- [ ] FEAT-023 - Publish the HexaRot sheet
 
 ## Section 6 - Pending decisions
 

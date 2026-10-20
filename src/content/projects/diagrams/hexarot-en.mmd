@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph encode [Encryption]
+    direction LR
+    text[Transliterated text] --> grid[Hexahue grid completed at random]
+    grid --> rot{Rotations of cell blocks}
+    rot --> img[PNG or SVG cryptogram]
+  end
+  subgraph keyflow [Key]
+    direction LR
+    params[Block size, sequence, direction, reading order] --> key[Reusable base36 key]
+    key --> decode[Decryption of the whole grid]
+  end
+  encode --> keyflow
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class rot accent
