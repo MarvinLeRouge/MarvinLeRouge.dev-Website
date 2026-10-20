@@ -27,6 +27,7 @@ automatically from Conventional Commits history.
 - Add architecture diagrams to project sheets
 - Write the JobFlow pilot sheet and enforce the sheet publication rules
 - Publish the JobFlow sheet with a readable link preview
+- Write the GeoChallenge-Tracker sheet as a draft
 
 ### Miscellaneous
 

@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph ingest [Import]
+    direction LR
+    gpx[GPX or ZIP files] --> parse[Import and challenge detection]
+    parse --> db[(MongoDB, geospatial index)]
+  end
+  subgraph track [Tracking]
+    direction LR
+    rules{Rules as expression trees} --> compile[Compiled MongoDB queries]
+    compile --> progress[Progress and target caches]
+    progress --> ui[Vue 3 and Leaflet maps]
+  end
+  ingest --> track
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class rules accent
