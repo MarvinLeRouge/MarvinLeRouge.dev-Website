@@ -1,0 +1,14 @@
+flowchart TB
+  subgraph engine [Moteur Python]
+    direction LR
+    sonar[Sonar en cône, détection probabiliste] --> maps{Cartes bayésiennes par drone}
+    maps --> strat[Stratégies de recherche et regroupement]
+  end
+  subgraph display [Diffusion et affichage]
+    direction LR
+    api[API FastAPI] --> ws[WebSocket, un état par tour]
+    ws --> ui[Vue 3 sur Canvas, carte de chaleur]
+  end
+  engine --> display
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class maps accent

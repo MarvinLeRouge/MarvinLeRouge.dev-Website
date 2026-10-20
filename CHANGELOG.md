@@ -29,6 +29,7 @@ automatically from Conventional Commits history.
 - Publish the JobFlow sheet with a readable link preview
 - Write the GeoChallenge-Tracker sheet as a draft
 - Write the Summit-Stats sheet as a draft
+- Write the Triton sheet as a draft
 
 ### Miscellaneous
 
