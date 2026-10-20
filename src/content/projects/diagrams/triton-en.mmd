@@ -1,0 +1,14 @@
+flowchart TB
+  subgraph engine [Python engine]
+    direction LR
+    sonar[Cone sonar, probabilistic detection] --> maps{Bayesian maps per drone}
+    maps --> strat[Search strategies and regroup]
+  end
+  subgraph display [Streaming and display]
+    direction LR
+    api[FastAPI API] --> ws[WebSocket, one state per turn]
+    ws --> ui[Vue 3 on Canvas, heatmap]
+  end
+  engine --> display
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class maps accent

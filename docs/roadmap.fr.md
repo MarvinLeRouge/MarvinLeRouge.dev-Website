@@ -41,7 +41,8 @@
 - [ ] FEAT-020 - Publier la fiche GeoChallenge-Tracker
 - [x] FEAT-010 - Rédiger la fiche Summit-Stats
 - [ ] FEAT-021 - Publier la fiche Summit-Stats
-- [ ] FEAT-011 - Rédiger la fiche Triton
+- [x] FEAT-011 - Rédiger la fiche Triton
+- [ ] FEAT-022 - Publier la fiche Triton
 - [ ] FEAT-012 - Rédiger la fiche HexaRot
 
 ## Section 6 - Décisions en attente
