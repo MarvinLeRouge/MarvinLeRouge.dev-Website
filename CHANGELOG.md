@@ -32,6 +32,7 @@ automatically from Conventional Commits history.
 - Write the Triton sheet as a draft
 - Write the HexaRot sheet as a draft
 - Publish the GeoChallenge-Tracker sheet
+- Publish the Summit-Stats sheet
 
 ### Miscellaneous
 
