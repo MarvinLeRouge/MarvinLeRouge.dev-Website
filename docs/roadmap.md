@@ -40,7 +40,7 @@
 - [x] FEAT-009 - Write the GeoChallenge-Tracker sheet
 - [x] FEAT-020 - Publish the GeoChallenge-Tracker sheet
 - [x] FEAT-010 - Write the Summit-Stats sheet
-- [ ] FEAT-021 - Publish the Summit-Stats sheet
+- [x] FEAT-021 - Publish the Summit-Stats sheet
 - [x] FEAT-011 - Write the Triton sheet
 - [ ] FEAT-022 - Publish the Triton sheet
 - [x] FEAT-012 - Write the HexaRot sheet

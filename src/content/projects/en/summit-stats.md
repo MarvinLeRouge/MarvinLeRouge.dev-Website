@@ -15,15 +15,15 @@ recruiter:
 lastAction: OWASP security audit and API hardening (login rate limiting, security headers, protected XML parsing)
 adrs:
   - title: 'ADR-0003: GPX analysis pipeline as composable services'
-    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/286e434996a6ea7e3b26a4b8ddeb5832dd69790d/docs/adr/0003-gpx-pipeline-as-composable-services.md
+    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/f554dc15acb5172b1429d1da32924caf144b9db8/docs/adr/0003-gpx-pipeline-as-composable-services.md
   - title: 'ADR-0004: SQLite for development and tests, PostgreSQL for production'
-    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/286e434996a6ea7e3b26a4b8ddeb5832dd69790d/docs/adr/0004-sqlite-dev-postgresql-production.md
+    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/f554dc15acb5172b1429d1da32924caf144b9db8/docs/adr/0004-sqlite-dev-postgresql-production.md
   - title: 'ADR-0008: Docker Compose and Traefik in production'
-    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/286e434996a6ea7e3b26a4b8ddeb5832dd69790d/docs/adr/0008-docker-compose-traefik-production.md
+    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/f554dc15acb5172b1429d1da32924caf144b9db8/docs/adr/0008-docker-compose-traefik-production.md
   - title: 'ADR-0009: three tiers of automated tests (Pest, Vitest, Playwright)'
-    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/286e434996a6ea7e3b26a4b8ddeb5832dd69790d/docs/adr/0009-three-tier-automated-testing.md
+    url: https://github.com/MarvinLeRouge/Summit-Stats/blob/f554dc15acb5172b1429d1da32924caf144b9db8/docs/adr/0009-three-tier-automated-testing.md
 order: 4
-draft: true
+draft: false
 ---
 
 Summit-Stats started from a hiker's question: am I really getting better on steep climbs, or only on the flat? Sports apps answer with averages over the whole outing, which blend terrains together. I wanted figures slope by slope.
