@@ -12,18 +12,18 @@ recruiter:
   problem: En géocaching, une cache "challenge" ne peut être validée qu'une fois remplie une condition sur ses trouvailles passées, par exemple une cache pour chacune des 81 combinaisons de difficulté et de terrain, une pour chaque jour de l'année, ou un nombre donné de caches d'un certain type dans un pays. Les géocacheurs suivent ces conditions à la main, dans des tableurs, sur des milliers de trouvailles.
   built: Une application web complète, avec une API FastAPI de plus de 50 endpoints sur MongoDB et une interface Vue 3 avec cartes interactives. Elle importe les trouvailles depuis des fichiers GPX, détecte les caches challenge, décrit les règles de chaque challenge sous forme de données, calcule la progression et propose les caches qui la feraient avancer, y compris autour d'un point donné.
   result: Je l'utilise dans ma propre pratique du géocaching, et de vrais testeurs l'utilisent aussi. Le projet a traversé un audit de sécurité complet (OWASP Top 10, ASVS), dont toutes les remarques ont été corrigées.
-lastAction: Durcissement des images Docker, avec un serveur nginx sans droits root et une image backend allégée
+lastAction: Réduction de la duplication de code, côté backend et frontend
 adrs:
   - title: 'ADR-0001 : proxy de tuiles auto-hébergé avec cache disque'
-    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/a66ba7cb98dbdc72d3db5f2f9298905070c48493/docs/adr/0001-self-hosted-tile-proxy-with-disk-cache.md
+    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/265288c756ad95701e32c61c4d1d400c8f53ac0e/docs/adr/0001-self-hosted-tile-proxy-with-disk-cache.md
   - title: "ADR-0002 : synchronisation des challenges côté serveur après l'import"
-    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/a66ba7cb98dbdc72d3db5f2f9298905070c48493/docs/adr/0002-server-side-challenge-sync-after-import.md
+    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/265288c756ad95701e32c61c4d1d400c8f53ac0e/docs/adr/0002-server-side-challenge-sync-after-import.md
   - title: 'ADR-0005 : carte des trouvailles par zone administrative'
-    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/a66ba7cb98dbdc72d3db5f2f9298905070c48493/docs/adr/0005-choropleth-map-administrative-zones.md
+    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/265288c756ad95701e32c61c4d1d400c8f53ac0e/docs/adr/0005-choropleth-map-administrative-zones.md
   - title: 'ADR-0008 : passage du hachage des mots de passe de bcrypt à Argon2id'
-    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/a66ba7cb98dbdc72d3db5f2f9298905070c48493/docs/adr/0008-password-hashing-bcrypt-to-argon2id.md
+    url: https://github.com/MarvinLeRouge/GeoChallenge-Tracker/blob/265288c756ad95701e32c61c4d1d400c8f53ac0e/docs/adr/0008-password-hashing-bcrypt-to-argon2id.md
 order: 3
-draft: true
+draft: false
 ---
 
 GeoChallenge-Tracker part d'une pratique personnelle : je suis géocacheur, et je voulais que l'outil fasse les comptes à ma place. C'est aussi le projet le plus complet du portfolio, du parsing de fichiers GPX à la carte interactive, en passant par la sécurité de l'authentification.
