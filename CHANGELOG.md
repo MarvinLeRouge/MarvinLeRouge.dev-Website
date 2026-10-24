@@ -40,6 +40,7 @@ automatically from Conventional Commits history.
 - Bootstrap astro and port the homepage
 - Add linting, formatting, git hooks and community docs
 - Containerize the site with nginx and self-hosted fonts
+- Ignore codegraph folder
 
 ### Testing
 
