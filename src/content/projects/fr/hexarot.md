@@ -52,6 +52,7 @@ Le backend est testé avec Jest, en tests unitaires et en tests de bout en bout 
 
 ### Chronologie
 
+- **2025 :** premiers travaux, hors dépôt.
 - **Mars 2026 :** socle du projet et CI, puis le cœur du chiffrement en quelques jours : codec de clé, validation par PGCD, construction de la grille, moteur de rotation.
 - **Août 2026 :** rendus PNG et SVG, API, interface, puis revue de conception et d'ergonomie et ses corrections.
 - **Septembre 2026 :** comptes utilisateurs et administration, déploiement automatisé en production, score de corrélation, harmonisation de la CI et de la documentation.

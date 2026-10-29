@@ -55,6 +55,7 @@ Le backend est testé avec Pest, le frontend avec Vitest, et les parcours comple
 
 ### Chronologie
 
+- **2025 :** premiers travaux, hors dépôt.
 - **Mars 2026 :** V1 livrée en deux jours, en TDD strict (pipeline GPX, API REST, tableau de bord, CI), puis V2 (profil altimétrique, carte, traces sans horodatage, enrichissement de l'altitude).
 - **Fin mars et début avril 2026 :** V3, avec la stack Docker, PostgreSQL, les tests de bout en bout et la mise en production derrière Traefik, conditionnée à ces tests.
 - **De juin à septembre 2026 :** connexion par mot de passe, audit de sécurité et durcissement, analyse statique, sauvegardes de la base, documentation et ADR, harmonisation de la CI.
