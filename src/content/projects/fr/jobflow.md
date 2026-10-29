@@ -32,7 +32,7 @@ JobFlow est né d'un agacement très concret : chaque matin, une pile d'alertes 
 
 ![Flux de JobFlow : alertes dans Gmail, récupération par l'API Gmail, registre JSON par Message-ID, extraction par fournisseur, déduplication et filtres, garde-fou d'erreur, puis Google Sheets](../diagrams/jobflow-fr.svg)
 
-Le pipeline enchaîne quatre étapes indépendantes : la récupération des emails par l'API Gmail, leur renommage et leur indexation, l'extraction des offres, puis la synchronisation vers Google Sheets. Chaque étape est un script autonome, avec son mode de simulation. Elles partagent un seul état : un registre JSON indexé par le Message-ID de chaque email, qui sait ce qui a déjà été traité. Un orchestrateur les enchaîne et s'arrête à la première erreur, pour qu'une étape ne travaille jamais sur un état laissé incohérent par la précédente. Avant l'écriture dans le tableau, un garde-fou arrête l'exécution du pipeline si la synchronisation précédente a échoué.
+Le pipeline enchaîne cinq étapes indépendantes : la récupération des emails par l'API Gmail, leur renommage et leur indexation, l'extraction des offres, la synchronisation vers Google Sheets, puis le rangement dans Gmail (emails marqués comme lus, classés sous un libellé et archivés). Chaque étape est un script autonome, avec son mode de simulation. Elles partagent un seul état : un registre JSON indexé par le Message-ID de chaque email, qui sait ce qui a déjà été traité. Un orchestrateur les enchaîne et s'arrête à la première erreur, pour qu'une étape ne travaille jamais sur un état laissé incohérent par la précédente. Avant l'écriture dans le tableau, un garde-fou arrête l'exécution du pipeline si la synchronisation précédente a échoué.
 
 ### Décisions clés
 

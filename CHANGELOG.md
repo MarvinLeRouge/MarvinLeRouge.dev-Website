@@ -10,6 +10,7 @@ automatically from Conventional Commits history.
 - Redirect www to the apex domain
 - Update the GeoChallenge-Tracker endpoint count
 - State the JobFlow provider count
+- Describe the five JobFlow pipeline stages
 
 ### CI/CD
 
