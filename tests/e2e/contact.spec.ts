@@ -21,7 +21,7 @@ for (const { path, spelledOut } of HOMEPAGES) {
       );
       await expect(page.getByRole('link', { name: 'LinkedIn', exact: true })).toHaveAttribute(
         'href',
-        'https://www.linkedin.com/in/jean-ceugniet-developpeur-web/',
+        'https://www.linkedin.com/in/jean-ceugniet/',
       );
       await expect(page.locator('a[target]')).toHaveCount(0);
     });

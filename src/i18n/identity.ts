@@ -12,7 +12,7 @@ export const THEME_COLOR = '#111111';
 
 export const GITHUB_URL = 'https://github.com/MarvinLeRouge';
 
-export const LINKEDIN_URL = 'https://www.linkedin.com/in/jean-ceugniet-developpeur-web/';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/jean-ceugniet/';
 
 /**
  * Contact address, encoded with `encodeEmail` so it never appears in plain text, here or in the HTML.

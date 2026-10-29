@@ -11,6 +11,7 @@ automatically from Conventional Commits history.
 - Update the GeoChallenge-Tracker endpoint count
 - State the JobFlow provider count
 - Describe the five JobFlow pipeline stages
+- Update linkedin profile url
 
 ### CI/CD
 
