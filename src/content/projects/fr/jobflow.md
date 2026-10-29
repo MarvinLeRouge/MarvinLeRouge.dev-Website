@@ -9,7 +9,7 @@ screenshot:
   alt: Tableau de suivi JobFlow dans Google Sheets, une ligne par offre avec son identifiant, sa date, son fournisseur, son titre et son entreprise
 keywords: [Pipelines de données, Python, Qualité et tests, API Google]
 recruiter:
-  problem: Les alertes emploi arrivent par email depuis une demi-douzaine de fournisseurs, jusqu'à une douzaine par jour, et la même offre est souvent relayée par plusieurs d'entre eux. Les suivre à la main faisait perdre du temps et des offres.
+  problem: Les alertes emploi arrivent par email depuis sept fournisseurs, jusqu'à une douzaine par jour, et la même offre est souvent relayée par plusieurs d'entre eux. Les suivre à la main faisait perdre du temps et des offres.
   built: Un pipeline Python qui récupère les alertes dans Gmail, extrait chaque offre selon le format de son fournisseur, supprime les doublons entre fournisseurs, écarte les offres hors sujet et alimente un tableau Google Sheets. Un garde-fou bloque la synchronisation tant qu'une erreur n'a pas été vérifiée.
   result: Je l'utilise au quotidien comme tableau de suivi de ma recherche d'emploi. Environ 900 emails historiques ont été migrés dans le nouveau système.
 lastAction: Ajout d'un nouveau fournisseur d'alertes, JobLeads
@@ -37,7 +37,7 @@ Le pipeline enchaîne quatre étapes indépendantes : la récupération des emai
 ### Décisions clés
 
 - **Un registre plutôt qu'un rescan.** Plutôt que de relire tous les emails à chaque passage, chaque étape consulte le registre et ne traite que ce qui reste à faire. Relancer une étape après un échec partiel évite donc de refaire le travail déjà fait.
-- **Un module d'extraction par fournisseur, pas un extracteur générique.** Ces emails sont des messages marketing, pas une API, et chaque fournisseur a ses bizarreries de mise en page. Une demi-douzaine de petites fonctions, chacune testée avec ses propres exemples, se sont révélées plus simples qu'une abstraction qui aurait dû traiter chaque exception à part.
+- **Un module d'extraction par fournisseur, pas un extracteur générique.** Ces emails sont des messages marketing, pas une API, et chaque fournisseur a ses bizarreries de mise en page. Sept petites fonctions, chacune testée avec ses propres exemples, se sont révélées plus simples qu'une abstraction qui aurait dû traiter chaque exception à part.
 - **Une déduplication entre fournisseurs, volontairement floue.** Le Message-ID évite de traiter deux fois le même email, mais pas la même offre relayée par deux fournisseurs. Une seconde clé, construite à partir de l'entreprise, de la ville et d'un titre normalisé, rapproche les offres même quand leurs textes ne sont pas identiques au caractère près.
 - **Bloquer plutôt que réessayer.** Après un échec de synchronisation, le pipeline refuse de repartir tant que l'erreur n'a pas été acquittée à la main. Un peu de friction, en échange de la garantie de ne jamais croire à jour un tableau qui ne l'est plus.
 
