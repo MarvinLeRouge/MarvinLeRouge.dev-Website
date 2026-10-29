@@ -55,6 +55,7 @@ Le backend est testé avec pytest, le frontend avec Vitest, et les deux suites t
 
 ### Chronologie
 
+- **2024 :** premiers travaux, hors dépôt.
 - **Septembre 2025 :** socle de l'application (API FastAPI, MongoDB, frontend Vue 3), premiers tests frontend, cache des tuiles de carte.
 - **Automne 2025 :** challenges utilisateur, sauvegarde et restauration de la base, import GPX multi-format, matrice et calendrier.
 - **Printemps 2026 :** passage derrière Traefik, mis en place pour servir toutes mes applications en sous-domaines, envoi d'emails, carte des trouvailles par zone administrative.

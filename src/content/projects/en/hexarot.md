@@ -52,6 +52,7 @@ The backend is tested with Jest, with unit tests and end-to-end API tests, the f
 
 ### Timeline
 
+- **2025:** early work, outside the repository.
 - **March 2026:** project foundations and CI, then the core of the cipher in a few days: key codec, GCD validation, grid construction, rotation engine.
 - **August 2026:** PNG and SVG renderers, API, interface, then a design and usability review and its fixes.
 - **September 2026:** user accounts and administration, automated production deployment, correlation score, CI and documentation harmonization.

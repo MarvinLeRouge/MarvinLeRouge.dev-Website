@@ -34,6 +34,7 @@ automatically from Conventional Commits history.
 - Write the HexaRot sheet as a draft
 - Publish the GeoChallenge-Tracker sheet
 - Publish the Summit-Stats sheet
+- Add the early work line to three sheet timelines
 
 ### Miscellaneous
 

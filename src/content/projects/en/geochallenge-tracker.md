@@ -55,6 +55,7 @@ The backend is tested with pytest, the frontend with Vitest, and both suites run
 
 ### Timeline
 
+- **2024:** early work, outside the repository.
 - **September 2025:** application foundations (FastAPI API, MongoDB, Vue 3 frontend), first frontend tests, map tile caching.
 - **Fall 2025:** user challenges, database backup and restore, multi-format GPX import, matrix and calendar.
 - **Spring 2026:** moved behind Traefik, set up to serve all my applications as subdomains, email sending, map of finds by administrative zone.

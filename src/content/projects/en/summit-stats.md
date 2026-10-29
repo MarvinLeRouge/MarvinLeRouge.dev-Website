@@ -55,6 +55,7 @@ The backend is tested with Pest, the frontend with Vitest, and the complete flow
 
 ### Timeline
 
+- **2025:** early work, outside the repository.
 - **March 2026:** V1 shipped in two days, in strict TDD (GPX pipeline, REST API, dashboard, CI), then V2 (elevation profile, map, tracks without timestamps, altitude enrichment).
 - **Late March and early April 2026:** V3, with the Docker stack, PostgreSQL, end-to-end tests and production deployment behind Traefik, gated on those tests.
 - **June to September 2026:** password login, security audit and hardening, static analysis, database backups, documentation and ADRs, CI harmonization.
