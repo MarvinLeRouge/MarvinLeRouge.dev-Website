@@ -10,7 +10,7 @@ screenshot:
 keywords: [API REST, Python / FastAPI, MongoDB, Données géospatiales]
 recruiter:
   problem: En géocaching, une cache "challenge" ne peut être validée qu'une fois remplie une condition sur ses trouvailles passées, par exemple une cache pour chacune des 81 combinaisons de difficulté et de terrain, une pour chaque jour de l'année, ou un nombre donné de caches d'un certain type dans un pays. Les géocacheurs suivent ces conditions à la main, dans des tableurs, sur des milliers de trouvailles.
-  built: Une application web complète, avec une API FastAPI de plus de 50 endpoints sur MongoDB et une interface Vue 3 avec cartes interactives. Elle importe les trouvailles depuis des fichiers GPX, détecte les caches challenge, décrit les règles de chaque challenge sous forme de données, calcule la progression et propose les caches qui la feraient avancer, y compris autour d'un point donné.
+  built: Une application web complète, avec une API FastAPI de plus de 70 endpoints sur MongoDB et une interface Vue 3 avec cartes interactives. Elle importe les trouvailles depuis des fichiers GPX, détecte les caches challenge, décrit les règles de chaque challenge sous forme de données, calcule la progression et propose les caches qui la feraient avancer, y compris autour d'un point donné.
   result: Je l'utilise dans ma propre pratique du géocaching, et de vrais testeurs l'utilisent aussi. Le projet a traversé un audit de sécurité complet (OWASP Top 10, ASVS), dont toutes les remarques ont été corrigées.
 lastAction: Réduction de la duplication de code, côté backend et frontend
 adrs:

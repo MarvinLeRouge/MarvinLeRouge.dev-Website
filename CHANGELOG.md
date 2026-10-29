@@ -8,6 +8,7 @@ automatically from Conventional Commits history.
 
 - Add node types for the playwright config type check
 - Redirect www to the apex domain
+- Update the GeoChallenge-Tracker endpoint count
 
 ### CI/CD
 

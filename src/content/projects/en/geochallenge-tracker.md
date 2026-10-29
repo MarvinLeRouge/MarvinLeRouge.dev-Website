@@ -10,7 +10,7 @@ screenshot:
 keywords: [REST API, Python / FastAPI, MongoDB, Geospatial data]
 recruiter:
   problem: In geocaching, a "challenge" cache can only be logged once a condition on your past finds is met, for example one cache for each of the 81 difficulty and terrain combinations, one for each day of the year, or a given number of caches of a certain type in a country. Geocachers track these conditions by hand, in spreadsheets, across thousands of finds.
-  built: A full-stack web application, with a FastAPI API of more than 50 endpoints on MongoDB and a Vue 3 interface with interactive maps. It imports finds from GPX files, detects challenge caches, describes the rules of each challenge as data, computes progress and suggests the caches that would move it forward, including around a given point.
+  built: A full-stack web application, with a FastAPI API of more than 70 endpoints on MongoDB and a Vue 3 interface with interactive maps. It imports finds from GPX files, detects challenge caches, describes the rules of each challenge as data, computes progress and suggests the caches that would move it forward, including around a given point.
   result: I use it in my own geocaching, and real testers use it too. The project went through a full security audit (OWASP Top 10, ASVS), and every finding was fixed.
 lastAction: Reduced code duplication across the backend and frontend
 adrs:
