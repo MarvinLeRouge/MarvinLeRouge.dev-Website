@@ -9,7 +9,7 @@ screenshot:
   alt: JobFlow tracking sheet in Google Sheets, one row per offer with its ID, date, provider, title and company
 keywords: [Data pipelines, Python, Quality and testing, Google APIs]
 recruiter:
-  problem: Job alerts arrive by email from about half a dozen providers, up to a dozen a day, and the same offer is often relayed by several of them. Tracking them by hand wasted time and lost offers.
+  problem: Job alerts arrive by email from seven providers, up to a dozen a day, and the same offer is often relayed by several of them. Tracking them by hand wasted time and lost offers.
   built: A Python pipeline that fetches the alerts from Gmail, parses each offer according to its provider's format, removes duplicates across providers, sets aside irrelevant offers and feeds a Google Sheet. A gate blocks the sync until any error has been checked.
   result: I use it daily as the tracking sheet of my job search. About 900 historical emails were migrated into the new system.
 lastAction: Added a new alert provider, JobLeads
@@ -37,7 +37,7 @@ The pipeline chains four independent stages: fetching the emails through the Gma
 ### Key decisions
 
 - **A ledger rather than a rescan.** Instead of re-reading every email on each run, each stage checks the ledger and only processes what is left. Re-running a stage after a partial failure avoids redoing the work already done.
-- **One parser per provider, not a generic scraper.** These emails are marketing messages, not an API, and each provider has its own layout quirks. Half a dozen small functions, each tested with its own samples, turned out simpler than an abstraction that would have special-cased every exception anyway.
+- **One parser per provider, not a generic scraper.** These emails are marketing messages, not an API, and each provider has its own layout quirks. Seven small functions, each tested with its own samples, turned out simpler than an abstraction that would have special-cased every exception anyway.
 - **Cross-provider deduplication, deliberately fuzzy.** The Message-ID prevents processing the same email twice, but not the same offer relayed by two providers. A second key, built from the company, the city and a normalized title, matches offers even when their texts are not identical character for character.
 - **Block rather than retry.** After a failed sync, the pipeline refuses to restart until the error has been acknowledged by hand. A bit of friction, in exchange for the guarantee of never trusting a sheet that is no longer current.
 
