@@ -32,7 +32,7 @@ JobFlow was born out of a very concrete annoyance: every morning, a pile of job 
 
 ![JobFlow flow: alerts in Gmail, Gmail API fetch, JSON ledger by Message-ID, per-provider parsing, deduplication and filters, error gate, then Google Sheets](../diagrams/jobflow-en.svg)
 
-The pipeline chains four independent stages: fetching the emails through the Gmail API, renaming and indexing them, extracting the offers, then syncing to Google Sheets. Each stage is a standalone script, with its own dry-run mode. They share a single state: a JSON ledger keyed by each email's Message-ID, which knows what has already been processed. An orchestrator chains them and stops at the first error, so a stage never works on a state left inconsistent by the previous one. Before anything is written to the sheet, a gate stops the pipeline run if the previous sync failed.
+The pipeline chains five independent stages: fetching the emails through the Gmail API, renaming and indexing them, extracting the offers, syncing to Google Sheets, then tidying Gmail (emails marked as read, labeled and archived). Each stage is a standalone script, with its own dry-run mode. They share a single state: a JSON ledger keyed by each email's Message-ID, which knows what has already been processed. An orchestrator chains them and stops at the first error, so a stage never works on a state left inconsistent by the previous one. Before anything is written to the sheet, a gate stops the pipeline run if the previous sync failed.
 
 ### Key decisions
 
