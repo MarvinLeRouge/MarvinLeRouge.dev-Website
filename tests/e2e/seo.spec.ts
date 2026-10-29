@@ -82,10 +82,7 @@ for (const { path, title, description, locale, alternateLocale, image } of HOMEP
         name: 'Jean Ceugniet',
         alternateName: 'MarvinLeRouge',
         url: SITE + path,
-        sameAs: [
-          'https://github.com/MarvinLeRouge',
-          'https://www.linkedin.com/in/jean-ceugniet-developpeur-web/',
-        ],
+        sameAs: ['https://github.com/MarvinLeRouge', 'https://www.linkedin.com/in/jean-ceugniet/'],
       });
     });
   });
