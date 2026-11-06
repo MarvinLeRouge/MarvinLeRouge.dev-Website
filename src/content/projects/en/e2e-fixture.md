@@ -14,7 +14,7 @@ recruiter:
   built: A published sheet, absent from the real site.
   result: The view switch is tested in production conditions.
 lastAction: Added an architecture diagram
-order: 1
+order: 100
 draft: false
 ---
 
