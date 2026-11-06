@@ -23,7 +23,7 @@ adrs:
   - title: 'ADR-0011 : le verdict humain sur chaque constat'
     url: https://github.com/MarvinLeRouge/Engineering-Radar/blob/47a701fdd820dc4b2632f3e636615f9bd8de30d2/docs/adr/0011-human-verdict-false-positive-feedback.md
 order: 1
-draft: true
+draft: false
 ---
 
 Engineering-Radar part d'un constat sur mon propre portfolio : chaque dépôt avait ses points forts et ses oublis, et je n'avais aucune vue d'ensemble fiable. Plutôt qu'une liste de contrôle tenue à la main, j'ai voulu une mesure répétable, appuyée sur des outils reconnus, et capable de suivre une progression dans le temps.

@@ -23,7 +23,7 @@ adrs:
   - title: 'ADR-0011: a human verdict on every finding'
     url: https://github.com/MarvinLeRouge/Engineering-Radar/blob/47a701fdd820dc4b2632f3e636615f9bd8de30d2/docs/adr/0011-human-verdict-false-positive-feedback.md
 order: 1
-draft: true
+draft: false
 ---
 
 Engineering-Radar comes from an observation about my own portfolio: each repository had its strengths and its gaps, and I had no reliable overall view. Rather than a checklist kept by hand, I wanted a repeatable measure, backed by well-known tools, and able to track progress over time.

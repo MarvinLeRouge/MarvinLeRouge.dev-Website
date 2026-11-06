@@ -39,6 +39,7 @@ automatically from Conventional Commits history.
 - Publish the Summit-Stats sheet
 - Add the early work line to three sheet timelines
 - Add the Engineering-Radar sheet as a draft
+- Publish the Engineering-Radar sheet
 
 ### Miscellaneous
 
