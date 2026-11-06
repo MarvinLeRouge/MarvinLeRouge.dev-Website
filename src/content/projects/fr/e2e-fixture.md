@@ -14,7 +14,7 @@ recruiter:
   built: Une fiche publiée, absente du site réel.
   result: Le sélecteur de vue est testé dans les conditions de la production.
 lastAction: Ajout d'un schéma d'architecture
-order: 1
+order: 100
 draft: false
 ---
 

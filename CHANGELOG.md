@@ -12,6 +12,7 @@ automatically from Conventional Commits history.
 - State the JobFlow provider count
 - Describe the five JobFlow pipeline stages
 - Update linkedin profile url
+- Move the fixture sheet out of the published order range
 
 ### CI/CD
 
@@ -38,6 +39,8 @@ automatically from Conventional Commits history.
 - Publish the GeoChallenge-Tracker sheet
 - Publish the Summit-Stats sheet
 - Add the early work line to three sheet timelines
+- Add the Engineering-Radar sheet as a draft
+- Publish the Engineering-Radar sheet
 
 ### Miscellaneous
 
