@@ -36,7 +36,8 @@
 
 - [x] FEAT-007 - Write the JobFlow pilot sheet
 - [x] FEAT-019 - Publish the JobFlow sheet
-- [ ] FEAT-008 - Write the Engineering-Radar sheet
+- [x] FEAT-008 - Write the Engineering-Radar sheet
+- [ ] FEAT-024 - Publish the Engineering-Radar sheet
 - [x] FEAT-009 - Write the GeoChallenge-Tracker sheet
 - [x] FEAT-020 - Publish the GeoChallenge-Tracker sheet
 - [x] FEAT-010 - Write the Summit-Stats sheet

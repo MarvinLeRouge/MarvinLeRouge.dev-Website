@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph audit [Audit]
+    direction LR
+    repos[Dépôts du portfolio] --> disc[Sous-projets et stacks détectés]
+    disc --> tools[34 outils figés]
+    tools --> norm{Constats et notes selon le référentiel}
+  end
+  subgraph restitution [Restitution]
+    direction LR
+    db[(SQLite, historique des audits)] --> api[API FastAPI]
+    api --> ui[Tableau de bord Vue 3, verdicts humains]
+  end
+  audit --> restitution
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class norm accent

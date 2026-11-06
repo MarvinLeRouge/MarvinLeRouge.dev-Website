@@ -38,6 +38,7 @@ automatically from Conventional Commits history.
 - Publish the GeoChallenge-Tracker sheet
 - Publish the Summit-Stats sheet
 - Add the early work line to three sheet timelines
+- Add the Engineering-Radar sheet as a draft
 
 ### Miscellaneous
 

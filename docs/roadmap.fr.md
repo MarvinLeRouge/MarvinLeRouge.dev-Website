@@ -36,7 +36,8 @@
 
 - [x] FEAT-007 - Rédiger la fiche pilote JobFlow
 - [x] FEAT-019 - Publier la fiche JobFlow
-- [ ] FEAT-008 - Rédiger la fiche Engineering-Radar
+- [x] FEAT-008 - Rédiger la fiche Engineering-Radar
+- [ ] FEAT-024 - Publier la fiche Engineering-Radar
 - [x] FEAT-009 - Rédiger la fiche GeoChallenge-Tracker
 - [x] FEAT-020 - Publier la fiche GeoChallenge-Tracker
 - [x] FEAT-010 - Rédiger la fiche Summit-Stats

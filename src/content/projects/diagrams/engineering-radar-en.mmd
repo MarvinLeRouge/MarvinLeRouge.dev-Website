@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph audit [Audit]
+    direction LR
+    repos[Portfolio repositories] --> disc[Detected sub-projects and stacks]
+    disc --> tools[34 pinned tools]
+    tools --> norm{Findings and scores against the framework}
+  end
+  subgraph output [Output]
+    direction LR
+    db[(SQLite, audit history)] --> api[FastAPI API]
+    api --> ui[Vue 3 dashboard, human verdicts]
+  end
+  audit --> output
+  classDef accent fill:#e03030,stroke:#e03030,color:#ffffff
+  class norm accent
