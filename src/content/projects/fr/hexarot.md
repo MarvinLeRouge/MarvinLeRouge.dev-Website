@@ -3,24 +3,26 @@ title: HexaRot
 tagline: Méthode de chiffrement visuel qui ajoute des rotations géométriques à un alphabet de couleurs existant, avec une clé courte et réutilisable.
 stack: [TypeScript, NestJS, PostgreSQL, Prisma, Vue 3, Sharp, Docker]
 repo: https://github.com/MarvinLeRouge/HexaRot
+demo: https://hexarot.marvinlerouge.dev
 screenshot:
-  src: ../images/example.png
-  alt: "Capture provisoire, en attendant une vue de l'écran de chiffrement de HexaRot avec un cryptogramme"
+  src: ../images/hexarot.png
+  full: ../images/hexarot-full.avif
+  alt: 'Écran de chiffrement de HexaRot : le message, les paramètres de rotation, le cryptogramme en couleurs et la clé générée'
 keywords: [TypeScript / NestJS, Vue.js, Cryptographie, Sécurité applicative]
 recruiter:
   problem: Hexahue est un alphabet visuel simple, où chaque lettre devient un petit bloc de six cases colorées. Une fois l'alphabet connu, un message se lit à l'œil. L'idée de HexaRot est d'ajouter une couche à ce système existant pour le rendre nettement plus difficile à casser.
   built: Une application web et une API REST. Le texte est écrit en symboles Hexahue sur une grille, complétée au hasard, puis la grille est découpée en blocs qui pivotent selon une séquence de rotations. Les rotations déplacent les cases une à une, et non les symboles entiers, ce qui disloque les lettres en bruit visuel. Tous les paramètres tiennent dans une clé courte, réutilisable pour n'importe quel message. Le résultat est une image PNG ou SVG.
   result: Le chiffrement, la clé, le déchiffrement, l'interface et l'authentification sont en place. Le gain de solidité reste à évaluer ; un score de corrélation, qui mesure la part de structure du message qui survit aux rotations, en est le premier outil de mesure.
-lastAction: 'Score de corrélation : mesure de la structure du message qui survit au chiffrement'
+lastAction: 'Interface en français avec un sélecteur de langue'
 adrs:
   - title: 'ADR-0001 : aucune longueur de message exposée dans le cryptogramme'
-    url: https://github.com/MarvinLeRouge/HexaRot/blob/8936885718ecd8f172d69262953e6468a415acd1/docs/adr/0001-no-message-length-exposure.md
+    url: https://github.com/MarvinLeRouge/HexaRot/blob/dd5dd34d21084ae6fecd664c86d9e19f74467362/docs/adr/0001-no-message-length-exposure.md
   - title: "ADR-0002 : la clé de déchiffrement retirée de l'URL"
-    url: https://github.com/MarvinLeRouge/HexaRot/blob/8936885718ecd8f172d69262953e6468a415acd1/docs/adr/0002-key-off-query-string.md
+    url: https://github.com/MarvinLeRouge/HexaRot/blob/dd5dd34d21084ae6fecd664c86d9e19f74467362/docs/adr/0002-key-off-query-string.md
   - title: 'ADR-0005 : marquer un résultat périmé plutôt que le supprimer'
-    url: https://github.com/MarvinLeRouge/HexaRot/blob/8936885718ecd8f172d69262953e6468a415acd1/docs/adr/0005-stale-result-marked-not-destroyed.md
+    url: https://github.com/MarvinLeRouge/HexaRot/blob/dd5dd34d21084ae6fecd664c86d9e19f74467362/docs/adr/0005-stale-result-marked-not-destroyed.md
 order: 6
-draft: true
+draft: false
 ---
 
 HexaRot part d'un alphabet croisé en géocaching, Hexahue, qui code chaque lettre en couleurs. Ce qui m'intéressait n'était pas l'alphabet lui-même, mais une question : que gagne-t-on en ajoutant une couche bien choisie à un système de chiffrement simple qui existe déjà ?
@@ -29,7 +31,7 @@ HexaRot part d'un alphabet croisé en géocaching, Hexahue, qui code chaque lett
 
 ![Architecture de HexaRot : texte translittéré, grille de symboles Hexahue complétée au hasard, rotations par blocs, cryptogramme PNG ou SVG ; les paramètres sont regroupés dans une clé base36 qui sert au déchiffrement](../diagrams/hexarot-fr.svg)
 
-Le backend NestJS découpe le chiffrement en modules : alphabet visuel, construction de la grille, moteur de rotation, codec de clé, ordres de lecture, rendus PNG et SVG, validation des paramètres. Le texte est mis en majuscules et ses accents translittérés ; un caractère hors alphabet est signalé à l'utilisateur plutôt que supprimé en silence. La grille est découpée en blocs carrés, chacun tourné selon une séquence choisie parmi 24 permutations, dans un sens et selon l'un des quatre ordres de lecture. La clé regroupe tous ces paramètres en une courte chaîne base36. Le frontend Vue 3 propose le chiffrement, le déchiffrement et la génération de clés ; PostgreSQL, via Prisma, stocke la définition de l'alphabet et les comptes utilisateurs.
+Le backend NestJS découpe le chiffrement en modules : alphabet visuel, construction de la grille, moteur de rotation, codec de clé, ordres de lecture, rendus PNG et SVG, validation des paramètres. Le texte est mis en majuscules et ses accents translittérés ; un caractère hors alphabet est signalé à l'utilisateur plutôt que supprimé en silence. La grille est découpée en blocs carrés, chacun tourné selon une séquence choisie parmi 24 permutations, dans un sens et selon l'un des huit ordres de lecture. La clé regroupe tous ces paramètres en une courte chaîne base36. Le frontend Vue 3 propose le chiffrement, le déchiffrement et la génération de clés ; PostgreSQL, via Prisma, stocke la définition de l'alphabet et les comptes utilisateurs.
 
 ### Décisions clés
 
@@ -56,7 +58,8 @@ Le backend est testé avec Jest, en tests unitaires et en tests de bout en bout 
 - **Mars 2026 :** socle du projet et CI, puis le cœur du chiffrement en quelques jours : codec de clé, validation par PGCD, construction de la grille, moteur de rotation.
 - **Août 2026 :** rendus PNG et SVG, API, interface, puis revue de conception et d'ergonomie et ses corrections.
 - **Septembre 2026 :** comptes utilisateurs et administration, déploiement automatisé en production, score de corrélation, harmonisation de la CI et de la documentation.
-- **À venir :** interface en français, mode de déchiffrement animé, ordre de lecture en spirale.
+- **Octobre 2026 :** interface en français avec un sélecteur de langue, page d'aide publique.
+- **À venir :** mode de déchiffrement animé, ordre de lecture en spirale.
 
 ### Ce que je referais autrement
 
