@@ -41,6 +41,7 @@ automatically from Conventional Commits history.
 - Add the early work line to three sheet timelines
 - Add the Engineering-Radar sheet as a draft
 - Publish the Engineering-Radar sheet
+- Publish the HexaRot sheet
 
 ### Miscellaneous
 

@@ -3,24 +3,26 @@ title: HexaRot
 tagline: Visual cipher that adds geometric rotations to an existing colour alphabet, with a short, reusable key.
 stack: [TypeScript, NestJS, PostgreSQL, Prisma, Vue 3, Sharp, Docker]
 repo: https://github.com/MarvinLeRouge/HexaRot
+demo: https://hexarot.marvinlerouge.dev
 screenshot:
-  src: ../images/example.png
-  alt: 'Temporary image, until a view of the HexaRot encode screen with a cryptogram is available'
+  src: ../images/hexarot.png
+  full: ../images/hexarot-full.avif
+  alt: 'HexaRot encode screen: the message, the rotation parameters, the colour cryptogram and the generated key'
 keywords: [TypeScript / NestJS, Vue.js, Cryptography, Application security]
 recruiter:
   problem: Hexahue is a simple visual alphabet, where each letter becomes a small block of six coloured cells. Once the alphabet is known, a message can be read by eye. The idea behind HexaRot is to add a layer to this existing system to make it much harder to break.
   built: A web application and a REST API. The text is written as Hexahue symbols on a grid, completed at random, then the grid is cut into blocks that turn according to a rotation sequence. Rotations move cells one by one, not whole symbols, which breaks letters apart into visual noise. All parameters fit in a short key, reusable for any message. The output is a PNG or SVG image.
   result: Encryption, the key, decryption, the interface and authentication are in place. The strength gain is still to be evaluated; a correlation score, which measures how much of the message's structure survives the rotations, is the first measuring tool.
-lastAction: "Correlation score: measuring how much of the message's structure survives encryption"
+lastAction: 'French interface with a language switcher'
 adrs:
   - title: 'ADR-0001: no message length exposed in the cryptogram'
-    url: https://github.com/MarvinLeRouge/HexaRot/blob/8936885718ecd8f172d69262953e6468a415acd1/docs/adr/0001-no-message-length-exposure.md
+    url: https://github.com/MarvinLeRouge/HexaRot/blob/dd5dd34d21084ae6fecd664c86d9e19f74467362/docs/adr/0001-no-message-length-exposure.md
   - title: 'ADR-0002: the decryption key moved out of the URL'
-    url: https://github.com/MarvinLeRouge/HexaRot/blob/8936885718ecd8f172d69262953e6468a415acd1/docs/adr/0002-key-off-query-string.md
+    url: https://github.com/MarvinLeRouge/HexaRot/blob/dd5dd34d21084ae6fecd664c86d9e19f74467362/docs/adr/0002-key-off-query-string.md
   - title: 'ADR-0005: mark a stale result instead of deleting it'
-    url: https://github.com/MarvinLeRouge/HexaRot/blob/8936885718ecd8f172d69262953e6468a415acd1/docs/adr/0005-stale-result-marked-not-destroyed.md
+    url: https://github.com/MarvinLeRouge/HexaRot/blob/dd5dd34d21084ae6fecd664c86d9e19f74467362/docs/adr/0005-stale-result-marked-not-destroyed.md
 order: 6
-draft: true
+draft: false
 ---
 
 HexaRot starts from an alphabet I came across in geocaching, Hexahue, which encodes each letter in colours. What interested me was not the alphabet itself, but a question: what do you gain by adding a well-chosen layer to a simple cipher that already exists?
@@ -29,7 +31,7 @@ HexaRot starts from an alphabet I came across in geocaching, Hexahue, which enco
 
 ![HexaRot architecture: transliterated text, grid of Hexahue symbols completed at random, block rotations, PNG or SVG cryptogram; the parameters are packed into a base36 key used for decryption](../diagrams/hexarot-en.svg)
 
-The NestJS backend splits encryption into modules: visual alphabet, grid construction, rotation engine, key codec, reading orders, PNG and SVG renderers, parameter validation. The text is uppercased and its accents transliterated; a character outside the alphabet is reported to the user rather than silently dropped. The grid is cut into square blocks, each turned according to a sequence picked among 24 permutations, in one direction and following one of four reading orders. The key packs all these parameters into a short base36 string. The Vue 3 frontend offers encryption, decryption and key generation; PostgreSQL, through Prisma, stores the alphabet definition and the user accounts.
+The NestJS backend splits encryption into modules: visual alphabet, grid construction, rotation engine, key codec, reading orders, PNG and SVG renderers, parameter validation. The text is uppercased and its accents transliterated; a character outside the alphabet is reported to the user rather than silently dropped. The grid is cut into square blocks, each turned according to a sequence picked among 24 permutations, in one direction and following one of eight reading orders. The key packs all these parameters into a short base36 string. The Vue 3 frontend offers encryption, decryption and key generation; PostgreSQL, through Prisma, stores the alphabet definition and the user accounts.
 
 ### Key decisions
 
@@ -56,7 +58,8 @@ The backend is tested with Jest, with unit tests and end-to-end API tests, the f
 - **March 2026:** project foundations and CI, then the core of the cipher in a few days: key codec, GCD validation, grid construction, rotation engine.
 - **August 2026:** PNG and SVG renderers, API, interface, then a design and usability review and its fixes.
 - **September 2026:** user accounts and administration, automated production deployment, correlation score, CI and documentation harmonization.
-- **Coming next:** French interface, animated decryption mode, spiral reading order.
+- **October 2026:** French interface with a language switcher, public help page.
+- **Coming next:** animated decryption mode, spiral reading order.
 
 ### What I would do differently
 
